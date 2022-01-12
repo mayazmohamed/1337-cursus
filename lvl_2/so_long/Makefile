@@ -6,7 +6,7 @@
 #    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 16:08:47 by momayaz           #+#    #+#              #
-#    Updated: 2022/01/10 16:22:48 by momayaz          ###   ########.fr        #
+#    Updated: 2022/01/11 16:32:41 by momayaz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror
 
 $(NAME) : ${SRCM} so_long.h
-	$(CC) $(CFLAGS) ${SRCM} -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+	$(CC)  ${SRCM} -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
 all : $(NAME)
 
