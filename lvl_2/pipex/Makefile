@@ -6,7 +6,7 @@
 #    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 11:28:22 by momayaz           #+#    #+#              #
-#    Updated: 2022/01/11 12:11:38 by momayaz          ###   ########.fr        #
+#    Updated: 2022/01/19 13:01:01 by momayaz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ bonus : $(NAMEB)
 
 clean : 
 	rm -rf ${NAME}
+	rm -rf ${NAMEB}
 
 fclean : clean
 

@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:00:28 by momayaz           #+#    #+#             */
-/*   Updated: 2022/01/10 13:10:41 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/01/13 12:35:43 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,18 @@ void	put_img(t_map *m, int i, int j)
 
 void	fill_map(char **t, t_map *m)
 {
-	int	i;
-	int	j;
-	int	w;
-	int	h;
+	int		i;
+	int		j;
+	int		w;
+	int		h;
+	char	*t1;
 
 	rand_move(m);
 	i = -1;
 	while (t[++i])
 	{
 		j = 0;
-		while (t[i][j])
+		while (t[i][j++])
 		{
 			if (t[i][j] == '1')
 			{
@@ -78,10 +79,11 @@ void	fill_map(char **t, t_map *m)
 			}
 			else
 				fill_map_else(t, m, i, j);
-			j++;
 		}
 	}
-	mlx_string_put(m->mlx, m->win, 1, 1, 1, ft_itoa(m->m));
+	t1 = ft_itoa(m->m);
+	mlx_string_put(m->mlx, m->win, 1, 1, 1, t1);
+	free(t1);
 }
 
 int	anim_player(t_map *l)

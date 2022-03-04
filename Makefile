@@ -5,46 +5,47 @@
 #                                                     +:+ +:+         +:+      #
 #    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/10 16:08:47 by momayaz           #+#    #+#              #
-#    Updated: 2022/01/13 12:42:48 by momayaz          ###   ########.fr        #
+#    Created: 2022/01/11 11:28:22 by momayaz           #+#    #+#              #
+#    Updated: 2022/01/11 12:08:24 by momayaz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCM = check_pos.c\
-		destroy.c\
-		fill_2.c\
-		fill_read_check.c\
-		find_fill.c\
+SRCM =	check_and_fill.c\
+		exec_file.c\
+		list_manipulation.c\
+		pipex.c\
+		split_file.c\
 		utils.c\
-		so_long.c
+		utils2.c
 
-SRCB = bonus/animation_b.c\
-		bonus/check_pos_b.c\
-		bonus/fill_read_check_b.c\
-		bonus/find_fill_b.c\
-		bonus/norm.c\
-		bonus/so_long_bonus.c\
-		bonus/utils_b.c
+SRCB =	bonus/check_and_fill.c\
+		bonus/exec_file_b.c\
+		bonus/here_doc.c\
+		bonus/list_manipulation_b.c\
+		bonus/pipex_bonus.c\
+		bonus/split_file.c\
+		bonus/utils_b.c\
+		bonus/utils2_b.c
 
-NAME = so_long
-
-BNAME = so_long_bonus
+NAME = pipex
+NAMEB = pipex_bonus
 
 CFLAGS = -Wall -Wextra -Werror
 
+$(NAME) : ${SRCM} pipex.h
+	$(CC) $(CFLAGS) ${SRCM} -o ${NAME}
+
+
+
 all : $(NAME)
 
-$(NAME) : ${SRCM} so_long.h
-	$(CC)  ${SRCM} -lmlx -framework OpenGL -framework AppKit -o ${NAME}
-
-
-$(BNAME) : ${SRCB} so_long.h
-			$(CC) $(CFLAGS) ${SRCB} -lmlx -framework OpenGL -framework AppKit -o ${BNAME}
-
-bonus :	$(BNAME)
+$(NAMEB) : ${SRCB} pipex.h
+	$(CC) $(CFLAGS) ${SRCB} -o ${NAMEB}
+	
+bonus : $(NAMEB)
 
 clean : 
-	rm -rf so_long
+	rm -rf ${NAME}
 
 fclean : clean
 
