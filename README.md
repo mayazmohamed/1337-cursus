@@ -17,14 +17,14 @@
 
 | CIRCLE  | NAME | FIELD | EXPECTED DURATION | EXP | STATUS | LVL |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| 0 | [libft](./LVL_0/libft) | C | 70 hours | 462 | ![momayaz's 42 Libft Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2395646) | 1.06 |
-| 1 | [get next line](./LVL_1/get_next_line) | C | 70 hours | 882 | ![momayaz's 42 get_next_line Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2410226)| 1.57 |
-| 1 | [ft_printf](./LVL_1/ft_printf) | C | 175 hours | 882 | ![momayaz's 42 ft_printf Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2425208)| 2.06 |
+| 0 | [libft](./lvl_0/libft) | C | 70 hours | 462 | ![momayaz's 42 Libft Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2395646) | 1.06 |
+| 1 | [get next line](./lvl_1/get_next_line) | C | 70 hours | 882 | ![momayaz's 42 get_next_line Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2410226)| 1.57 |
+| 1 | [ft_printf](./lvl_1/ft_printf) | C | 175 hours | 882 | ![momayaz's 42 ft_printf Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2425208)| 2.06 |
 | 1 | Born2beRoot | Virtual Machine | 40 hours | 577 | ![momayaz's 42 Born2beRoot Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2430292)| 2.29 |
-| 2 | [push_swap](./LVL_2/push_swap) | C | 60 hours | 1855 | ![momayaz's 42 push_swap Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2445480) | 3.02 |
-| 2 | [so_long](./LVL_2/so_long) | C | 60 hours | 1000 | ![momayaz's 42 so_long Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2457862) | 3.25 |
-| 2 | [pipex](./LVL_2/pipex) | C | 50 hours | 1142 | ![momayaz's 42 pipex Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2463057) | 3.50 |
-| 3 | [philosophers](./LVL_3/philosophers) | C | 70 hours | 3360 | ![momayaz's 42 philo Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2522279) | 4.08 |
-| 3 | ![minishell](./LVL_3/minishell) | C | 210 hours | 2814 | ![momayaz's 42 minishell Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2529005) | 4.29 |
+| 2 | [push_swap](./lvl_2/push_swap) | C | 60 hours | 1855 | ![momayaz's 42 push_swap Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2445480) | 3.02 |
+| 2 | [so_long](./lvl_2/so_long) | C | 60 hours | 1000 | ![momayaz's 42 so_long Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2457862) | 3.25 |
+| 2 | [pipex](./lvl_2/pipex) | C | 50 hours | 1142 | ![momayaz's 42 pipex Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2463057) | 3.50 |
+| 3 | [philosophers](./lvl_3/philosophers) | C | 70 hours | 3360 | ![momayaz's 42 philo Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2522279) | 4.08 |
+| 3 | ![minishell](./lvl_3/minishell) | C | 210 hours | 2814 | ![momayaz's 42 minishell Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2529005) | 4.29 |
 | 4 | NetPractice | Networking | 50 hours | 3160 | ![momayaz's 42 NetPractice Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2540809) | 4.48 |
 
