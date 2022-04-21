@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:11:17 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/16 23:56:24 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/20 22:20:36 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ char	*check_texr(t_cub *all, char *line, char *op)
 	s = ft_split(line, ' ');
 	if (!s)
 		ft_print(op);
-	text = ft_strtrim(s[1], "\n");
+	text = ft_strtrim(s[1], " \n");
 	fd = open(text, O_RDONLY);
 	if (fd == -1)
 		ft_print(op);
 	close(fd);
-	if (s[2])
+	if (s[2] && s[2][0] != '\n')
 		ft_print(op);
 	j = 0;
 	while (s[j])

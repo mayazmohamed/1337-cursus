@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:49:04 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/16 23:46:56 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/21 21:46:28 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ unsigned int	get_rgb(char *line)
 	while (s[1][i] && s[1][i] != ',')
 		i++;
 	i++;
+	if (!s[1][i] || s[1][i] == ',' || s[1][i] == '\n')
+		exit(printf("rgb error"));
 	j = i + 1;
 	while (s[1][j] && s[1][j] != ',')
 		j++;
 	j++;
-	c = (ft_atoi(s[1]) * 65536) + (ft_atoi(s[1] + i) * 256)
-		+ ft_atoi(s[1] + j);
+	if (!s[1][j] || s[1][j] == ',' || s[1][j] == '\n')
+		exit(printf("rgb error"));
+	c = (ft_atoi(s[1]) * 65536) + (ft_atoi(s[1] + i) * 256) + ft_atoi(s[1] + j);
+	ft_check(s);
 	j = 0;
 	while (s[j])
 		free(s[j++]);

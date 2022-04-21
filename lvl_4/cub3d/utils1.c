@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdrabi <hdrabi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:10:03 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/15 23:08:28 by hdrabi           ###   ########.fr       */
+/*   Updated: 2022/04/19 22:59:20 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int	ft_atoi(char *nptr)
 		a = a * 10 + *nptr - 48;
 		nptr++;
 	}
+	a *= b;
+	if (a < 0 || a > 255)
+		exit(printf("rgb error"));
 	return (a * b);
 }
 

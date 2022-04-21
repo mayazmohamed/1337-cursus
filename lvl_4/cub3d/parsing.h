@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:38:44 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/15 21:50:32 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/21 22:07:25 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,14 @@ void			get_width_height(char **map, int *width, int *height);
 int				ft_check_map_horizontal(char **map, int width, int height);
 int				ft_check_map_vertical(char **map, int width, int height);
 void			ft_remplir_map(char **map, int width, int height);
+void			ft_check(char **s);
+void			ft_pars(t_cub *all, int width, int height);
+void			big_parss1(t_cub *all, char c);
+int				big_parss(int ac, char *av[], t_cub *all, char c);
+void			check_b(t_cub *a,char c);
+void			check_charb(t_cub *a, char c);
+void			check_m(t_cub *a, char c);
+void			check_charm(t_cub *a, char c);
+void			ft_free(t_cub *all);
 
 #endif

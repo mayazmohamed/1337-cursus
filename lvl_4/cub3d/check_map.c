@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:51:14 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/17 00:27:39 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/21 22:02:01 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	ft_check_map_horizontal(char **map, int width, int height)
 			{
 				while (map[i][j] != '\0' && map[i][j] != ' ')
 					j++;
-				// if (!map[i][j])
-				// 	return (0);
+				if (!map[i][j])
+					return(0);
 				if (map[i][j] != '\0' && map[i][j - 1] != '1')
 					return (-1);
 			}
@@ -98,4 +98,21 @@ void	ft_remplir_map(char **map, int width, int height)
 		i++;
 	}
 	free(buffer);
+}
+
+void	ft_check(char **s)
+{
+	int	j;
+	int	i;
+
+	j = 0;
+	i = 0;
+	while (s[1][j])
+	{
+		if (s[1][j] == ',')
+			i++;
+		j++;
+	}
+	if (i > 2)
+		exit(printf("rgb error"));
 }
