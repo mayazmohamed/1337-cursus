@@ -27,6 +27,6 @@
 | 3 | [philosophers](./lvl_3/philosophers) | C | 70 hours | 3360 | ![momayaz's 42 philo Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2522279) | 4.08 |
 | 3 | ![minishell](./lvl_3/minishell) | C | 210 hours | 2814 | ![momayaz's 42 minishell Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2529005) | 4.29 |
 | 4 | NetPractice | Networking | 50 hours | 3160 | ![momayaz's 42 NetPractice Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2540809) | 4.48 |
-| 4 | [cub3D](./LVL4/cub3d) | C - mlx | 280 hours | 5775 | [![momayaz's 42 cub3D Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2570287)] | 4.91 |
+| 4 | [cub3D](./LVL4/cub3d) | C - mlx | 280 hours | 5775 | ![momayaz's 42 cub3D Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2570287) | 4.91 |
 
 
