@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:49:04 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/21 21:46:28 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 15:48:41 by izouf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../raycasting/cub3d.h"
 
 unsigned int	get_rgb(char *line)
 {
@@ -44,17 +44,15 @@ unsigned int	get_rgb(char *line)
 void	ft_parsing_line(t_cub *all, char *line, int i)
 {
 	ft_ifspace(line, &i);
-	ft_firstcheck(all, line[i], line[i + 1]);
+	ft_firstcheck(all, line[i]);
 	if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
-		all->info.n = check_texr(all, line, "NO");
+		all->info.n = check_texr(line, "NO");
 	else if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
-		all->info.s = check_texr(all, line, "SO");
+		all->info.s = check_texr(line, "SO");
 	else if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
-		all->info.w = check_texr(all, line, "WE");
+		all->info.w = check_texr(line, "WE");
 	else if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
-		all->info.e = check_texr(all, line, "EA");
-	else if (line[i] == 'D' && line[i + 1] == ' ')
-		all->info.d = check_texr(all, line, "D ");
+		all->info.e = check_texr(line, "EA");
 	else if (line[i] == 'F' && line[i + 1] == ' ')
 		all->info.fc = get_rgb(line);
 	else if (line[i] == 'C' && line[i + 1] == ' ')
@@ -99,15 +97,13 @@ char	**fil_tab(int line, int fd, t_cub *all)
 {
 	int		i;
 	char	**t;
-	char	*s;
-	char	*s1;
 	int		j;
 
 	i = 0;
 	j = 0;
 	t = malloc((line + 1) * sizeof(char *));
 	if (!t)
-		return (NULL);
+		ft_error("Allocation failed !\n");
 	fil_tab2(t, line, fd, all);
 	return (t);
 }
@@ -119,7 +115,7 @@ void	get_width_height(char **map, int *width, int *height)
 	i = 0;
 	while (map[i])
 	{
-		if (*width < ft_strlen(map[i]))
+		if (*width < (int)ft_strlen(map[i]))
 			*width = ft_strlen(map[i]);
 		i++;
 	}

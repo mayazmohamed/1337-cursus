@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:11:17 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/20 22:20:36 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 17:27:38 by izouf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../raycasting/cub3d.h"
 
 int	cont_line(char *t)
 {
@@ -36,13 +36,13 @@ void	ft_ifspace(char *line, int *i)
 		(*i)++;
 }
 
-void	ft_print(char *op)
+void	ft_printf(char *op)
 {
 	printf("%s texture not found\n", op);
 	exit(1);
 }
 
-char	*check_texr(t_cub *all, char *line, char *op)
+char	*check_texr(char *line, char *op)
 {
 	int		j;
 	char	**s;
@@ -51,14 +51,14 @@ char	*check_texr(t_cub *all, char *line, char *op)
 
 	s = ft_split(line, ' ');
 	if (!s)
-		ft_print(op);
+		ft_printf(op);
 	text = ft_strtrim(s[1], " \n");
 	fd = open(text, O_RDONLY);
 	if (fd == -1)
-		ft_print(op);
+		ft_printf(op);
 	close(fd);
 	if (s[2] && s[2][0] != '\n')
-		ft_print(op);
+		ft_printf(op);
 	j = 0;
 	while (s[j])
 		free(s[j++]);
@@ -66,13 +66,13 @@ char	*check_texr(t_cub *all, char *line, char *op)
 	return (text);
 }
 
-void	ft_firstcheck(t_cub *all, char c, char d)
+void	ft_firstcheck(t_cub *all, char c)
 {
 	if (all->info.test[(int)c] == 0)
 		all->info.test[(int)c] += 1;
 	else if (c && c != '1')
 	{
-		printf("dubel symbol %c ", c);
+		printf("double symbol %c ", c);
 		exit(1);
 	}
 	if (c == '1')

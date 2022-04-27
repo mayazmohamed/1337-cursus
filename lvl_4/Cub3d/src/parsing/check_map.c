@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:51:14 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/21 22:02:01 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 17:27:09 by izouf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../raycasting/cub3d.h"
 
-int	ft_check_map_horizontal(char **map, int width, int height)
+static void	ft_loop(int *i, int *j, char **map)
+{
+	while (map[*i][*j] == ' ')
+		(*j)++;
+	if (map[*i][*j] && map[*i][*j] != '1')
+		exit(0);
+}
+
+int	ft_check_map_horizontal(char **map, int height)
 {
 	int	i;
 	int	j;
@@ -23,20 +31,17 @@ int	ft_check_map_horizontal(char **map, int width, int height)
 		j = -1;
 		while (map[i][++j])
 		{
-			while (map[i][j] == ' ')
-				j++;
+			ft_loop(&i, &j, map);
 			if (!map[i][j])
 				break ;
-			if (map[i][j] != '1')
-				return (-1);
 			else
 			{
 				while (map[i][j] != '\0' && map[i][j] != ' ')
 					j++;
 				if (!map[i][j])
-					return(0);
+					return (0);
 				if (map[i][j] != '\0' && map[i][j - 1] != '1')
-					return (-1);
+					exit(1);
 			}
 		}
 	}
@@ -49,7 +54,7 @@ int	ft_check_map_vertical(char **map, int width, int height)
 	int	j;
 
 	j = 0;
-	while (j < width)
+	while (++j < width)
 	{
 		i = 0;
 		while (i < height)
@@ -59,7 +64,7 @@ int	ft_check_map_vertical(char **map, int width, int height)
 			if (i == height)
 				break ;
 			if (map[i][j] != '1')
-				return (printf("hello\n"), -1);
+				ft_error("map error\n");
 			while (i < height && map[i][j] != ' ')
 				i++;
 			if (map[i - 1][j] != '1')
@@ -87,7 +92,7 @@ void	ft_remplir_map(char **map, int width, int height)
 		j = -1;
 		while (++j < width)
 		{
-			if (j < ft_strlen(map[i]))
+			if ((size_t)j < ft_strlen(map[i]))
 				buffer[j] = map[i][j];
 			else
 				buffer[j] = ' ';

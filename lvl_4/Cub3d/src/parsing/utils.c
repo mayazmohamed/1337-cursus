@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:08:59 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/15 21:48:24 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 15:46:30 by izouf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../raycasting/cub3d.h"
 
 size_t	ft_strlen(char *s)
 {
@@ -55,7 +55,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	}
 	concat = malloc(sizeof(char) * (lenght + 1));
 	if (!concat)
-		return (NULL);
+		ft_error("Allocation Failed \n");
 	i = 0;
 	*concat = 0;
 	while (i < size)
@@ -100,7 +100,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i--;
 	pt = malloc(i + 1 * sizeof (char));
 	if (!pt)
-		return (NULL);
+		ft_error("Allocation Failed \n");
 	pt[i] = 0;
 	while (--i >= 0)
 		pt[i] = s1[i];

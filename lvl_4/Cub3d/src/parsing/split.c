@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:06:26 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/16 23:40:54 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 15:38:39 by izouf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../raycasting/cub3d.h"
 
 int	str_len(const char *s, char c)
 {
@@ -56,7 +56,7 @@ char	*str_cpy(const char *s, int size)
 
 	t = malloc((size + 1) * sizeof(char));
 	if (!t)
-		return (0);
+		ft_error("Allocation Failed \n");
 	t[size] = 0;
 	while (size--)
 		t[size] = s[size];
@@ -75,7 +75,7 @@ char	**ft_split(char *s, char c)
 	size = count_world(s, c);
 	t = malloc ((size + 1) * sizeof(char *));
 	if (!t)
-		return (0);
+		ft_error("Allocation Failed \n");
 	i = -1;
 	while (++i < size)
 	{

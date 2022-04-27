@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:10:03 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/19 22:59:20 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 17:44:09 by izouf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../raycasting/cub3d.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s)
 	i = ft_strlen(src);
 	t = malloc((i + 1) * sizeof(char));
 	if (t == NULL)
-		return (NULL);
+		ft_error("Allocation Failed \n");
 	i = 0;
 	while (src[i])
 	{
@@ -40,8 +40,9 @@ int	ft_atoi(char *nptr)
 
 	a = 0;
 	b = 1;
+	if_digit(nptr);
 	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
+		ft_error("rgb error\n");
 	if (*nptr == '-' || *nptr == '+')
 	{
 		if (*nptr == '-')
@@ -61,14 +62,23 @@ int	ft_atoi(char *nptr)
 
 int	check_file(char *t)
 {
-	int	i;
+	int		i;
+	int		fd;
+	char	c;
+	int		r;
 
 	i = 0;
+	fd = open(t, O_RDWR);
+	if (fd < 0)
+		ft_error("file not found\n");
+	r = read(fd, &c, 1);
 	while (t[i])
 		i++;
 	i--;
 	if (!(t[i] == 'b' && t[i - 1] == 'u' && t[i - 2] == 'c' && t[i - 3] == '.'))
-		return (printf("file map must be .cub extension."), 0);
+		ft_error("file map must be .cub extension.\n");
+	if (r <= 0)
+		ft_error("empty file");
 	return (1);
 }
 
