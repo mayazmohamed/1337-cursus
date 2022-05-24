@@ -15,7 +15,7 @@ class Span
 		Span(const Span &copy);
 		Span(unsigned int N);
 		
-		// Destructor
+		// Destruc`tor
 		~Span();
 		
 

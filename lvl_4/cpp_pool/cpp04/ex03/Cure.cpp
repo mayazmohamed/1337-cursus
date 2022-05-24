@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:23:57 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 17:07:33 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:16:42 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Cure::Cure(/* args */)
 {
-	std::cout << "Defult Cure constructor called" << std::endl;
+	// std::cout << "Defult Cure constructor called" << std::endl;
 	this->type = "cure";
 }
 
@@ -24,7 +24,7 @@ Cure ::Cure(std::string const &type){
 
 Cure::~Cure()
 {
-	std::cout << "Defult Cure destructor called" << std::endl;
+	// std::cout << "Defult Cure destructor called" << std::endl;
 }
 
 Cure:: Cure(Cure &F){
@@ -33,7 +33,7 @@ Cure:: Cure(Cure &F){
 }
 
 Cure & Cure:: operator=(const Cure &F){
-	std::cout  << "Copy assignment Cure constructor called" <<  std::endl;
+	// std::cout  << "Copy assignment Cure constructor called" <<  std::endl;
 	if (this != &F){
 		*this = F;
 	}

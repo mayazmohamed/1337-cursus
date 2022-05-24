@@ -6,7 +6,7 @@
 #    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 17:02:33 by momayaz           #+#    #+#              #
-#    Updated: 2022/05/12 17:02:56 by momayaz          ###   ########.fr        #
+#    Updated: 2022/05/23 15:19:11 by momayaz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRC =	main.cpp\
 		Span.cpp
 
 
-NAME = EasyFind
+NAME = Span
 
 CC = c++
 

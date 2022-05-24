@@ -6,20 +6,18 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:44:45 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/10 15:22:04 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:45:29 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form ::Form(std::string const name, bool s, int sign, int exec): name(name){
+Form ::Form(std::string const name, bool s, int sign, int exec): name(name), sign(sign), exec(exec){
 	if (sign < 1 || exec < 1)
 		throw GradeTooHighException();
 	if (sign > 150 || exec > 150)
 		throw GradeTooLowException();
 	this->s = s;
-	this->sign = sign;
-	this->exec = exec;
 }
 
 void Form::beSigned(Bureaucrat &F){
@@ -33,15 +31,16 @@ void Form::beSigned(Bureaucrat &F){
 	}
 }
 
-Form::Form()
+Form::Form(): name(""), sign(150), exec(150)
 {
+	this->s = 0;
 }
 
 Form::~Form()
 {
 }
 
-Form:: Form(Form &F){
+Form:: Form(Form &F): sign(150), exec(150){
 	std::cout << "Copy Form constructor called" << std::endl;
 	*this = F;
 }
@@ -49,8 +48,6 @@ Form:: Form(Form &F){
 Form & Form:: operator=(const Form &F){
 	std::cout  << "Copy assignment Form constructor called" <<  std::endl;
 	if (this != &F){
-		this->exec = F.exec;
-		this->sign = F.sign;
 		this->s = F.s;
 	}
 	return *this;
@@ -73,5 +70,5 @@ int Form:: getexec()const{
 }
 
 std::ostream& operator<< (std::ostream& out, const Form& c){
-	return out << "it is signed -> " << c.getbool() << " grade required to sign it -> " << c.getsign() << "  grade required to execute it -> " << c.getexec() << std::endl;
+	return out << c.getname() << " it is signed -> " << c.getbool() << " grade required to sign it -> " << c.getsign() << "  grade required to execute it -> " << c.getexec() << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:44:49 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/10 13:52:24 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:31:54 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class Form
 private:
 	std::string const name;
 	bool s;
-	int sign;
-	int exec;
+	const int sign;
+	const int exec;
 
 public:
 	Form(std::string const name, bool s, int sign, int exec);

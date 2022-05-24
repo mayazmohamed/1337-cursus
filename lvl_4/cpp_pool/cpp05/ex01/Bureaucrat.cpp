@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:41:45 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/10 15:35:12 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:41:48 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ Bureaucrat::~Bureaucrat()
 }
 
 Form Bureaucrat::signForm(Form &b){
-	if (b.getbool() == true)
-		std::cout << this->getName() << " is already signed " << std::endl;
+	if (b.getbool() == true){
+		std::cout << b.getname() << " is already signed " << std::endl;
+		return b;
+	}
 	if (this->getGrade() > b.getsign())
 		throw GradeTooLowException();
 	else if (this->getGrade() <= 0)

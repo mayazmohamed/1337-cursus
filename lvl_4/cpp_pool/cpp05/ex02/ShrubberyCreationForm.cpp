@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 18:13:09 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/10 18:51:26 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 12:31:39 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(): Form("ShrubberyCreationForm", 0, 145, 137)
 {
+	this->target = "default";
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
@@ -35,7 +36,7 @@ void ShrubberyCreationForm:: execute(Bureaucrat const & executor) const{
 	std::ofstream	myfile;
 	std::string		fileName = this->target + "_shrubbery";
 	if (this->getbool() != true){
-		std::cout << "is not signed" << std::endl;
+		std::cout << "is not signed 1 " << std::endl;
 		return;
 	}
 	if (executor.getGrade() > this->getexec()){

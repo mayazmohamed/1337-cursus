@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:25:22 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 17:25:13 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:05:38 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+	me->unequip(0);
 	delete bob;
 	delete me;
 	delete src;

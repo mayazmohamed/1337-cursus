@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 19:53:07 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/10 20:26:59 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 12:42:02 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ Form* Intern::makeForm(std::string str1, std::string str2){
 		new PresidentialPardonForm(str2)
 	};
 	std::string t[3] = {
-		"ShrubberyCreationForm",
-		"RobotomyRequestForm",
-		"PresidentialPardonForm"
+		"shrubbery creation",
+		"robotomy request",
+		"presidential pardon"
 	};
 	for (x = 0; x < 3; x++){
 		if (t[x] == str1)
@@ -58,6 +58,11 @@ Form* Intern::makeForm(std::string str1, std::string str2){
 	}
 	if (x == 3){
 		std::cout << "form not found" << std::endl;
+		for (size_t i = 0; i < 3; i++)
+		{
+			delete f[i];
+		}
+		
 		return NULL;
 	}
 	std::cout << "Intern creates "<< str1 << std::endl;

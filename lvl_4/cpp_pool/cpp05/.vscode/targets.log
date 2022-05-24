@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Thu May 12 14:52:37 2022
+# Make data base, printed on Wed May 18 11:16:32 2022
 
 # Variables
 
@@ -36,11 +36,11 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbx80032z_/T/vscode-ipc-c4cf3967-5e90-4183-b771-0786d25a4524.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbx80032z_/T/vscode-ipc-83b43020-bc86-455d-b8b1-d1a991771da3.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.xSgpJ4AVwJ/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.NpZLvdBNFy/Render
 # environment
 PATH = /Users/momayaz/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
@@ -52,7 +52,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.N4SA3C9hJN/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.KsofZZxkwt/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -120,7 +120,7 @@ MFLAGS = -Rrqp
 # environment
 NVM_DIR = /Users/momayaz/.nvm
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -150,7 +150,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3032
+VSCODE_PID = 12044
 # variable set hash-table stats:
 # Load=70/1024=7%, Rehash=0, Collisions=1/91=1%
 
@@ -234,7 +234,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Thu May 12 14:52:37 2022
+# Finished Make data base on Wed May 18 11:16:32 2022
 
  
 make: *** No rule to make target `all'.  Stop.

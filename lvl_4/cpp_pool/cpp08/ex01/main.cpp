@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:38:31 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/12 16:44:28 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/24 12:08:29 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(){
     {
         Span s(10);
     
-        for (size_t i = 0; i < 10; i++)
+        for (size_t i = 0; i < 5; i++)
         {
             s.addNumber(i);
         }
@@ -42,3 +42,16 @@ int main(){
     
     
 }
+
+// int main()
+// {
+// Span sp = Span(5);
+// sp.addNumber(6);
+// sp.addNumber(3);
+// sp.addNumber(17);
+// sp.addNumber(9);
+// sp.addNumber(11);
+// std::cout << sp.shortestSpan() << std::endl;
+// std::cout << sp.longestSpan() << std::endl;
+// return 0;
+// }

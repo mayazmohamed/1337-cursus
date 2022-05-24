@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:44:45 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/10 18:56:20 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:36:01 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void Form::beSigned(Bureaucrat &F){
 
 Form::Form(): name(""), sign(150), exec(150)
 {
+	this->s = 0;
 }
 
 Form::~Form()

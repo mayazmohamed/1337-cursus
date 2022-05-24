@@ -28,5 +28,5 @@
 | 3 | ![minishell](./lvl_3/minishell) | C | 210 hours | 2814 | ![momayaz's 42 minishell Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2529005) | 4.29 |
 | 4 | NetPractice | Networking | 50 hours | 3160 | ![momayaz's 42 NetPractice Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2540809) | 4.48 |
 | 4 | [cub3D](./lvl_4/Cub3d) | C - mlx | 280 hours | 5775 | ![momayaz's 42 cub3D Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2570287) | 4.91 |
-
+| 4 | [CPP Module 08](./lvl_4/cpp_pool) | C++ | 7 * 9 | 9660 | ![momayaz's 42 CPP Module 08 Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2598808) | 5.50 |
 

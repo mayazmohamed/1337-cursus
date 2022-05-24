@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:50:58 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 16:29:24 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:07:14 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class Character : public ICharacter
 {
 private:
 	AMateria* inv[4];
+	AMateria* src[4];
 	std::string name;
 public:
 	Character();

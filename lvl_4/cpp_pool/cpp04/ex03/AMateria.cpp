@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:25:36 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 16:39:55 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:16:23 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ AMateria::AMateria(std::string const &type)
 
 AMateria::~AMateria()
 {
-	std::cout << "Defult AMateria constructor called" << std::endl;
+	// std::cout << "Defult AMateria constructor called" << std::endl;
 }
 
 AMateria::AMateria()
 {
-	std::cout << "Defult AMateria destructor called" << std::endl;
+	// std::cout << "Defult AMateria destructor called" << std::endl;
 }
 
 AMateria:: AMateria(AMateria &F){
-	std::cout << "Copy AMateria constructor called" << std::endl;
+	// std::cout << "Copy AMateria constructor called" << std::endl;
 	*this = F;
 }
 
 AMateria & AMateria:: operator=(const AMateria &F){
-	std::cout  << "Copy assignment AMateria constructor called" <<  std::endl;
+	// std::cout  << "Copy assignment AMateria constructor called" <<  std::endl;
 	if (this != &F){
 		this->type = F.type;
 	}

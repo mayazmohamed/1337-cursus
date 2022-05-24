@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:21:41 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 17:09:35 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:17:23 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 MateriaSource::MateriaSource()
 {
-	std::cout << "Defult MateriaSource constructor called" << std::endl;
+	// std::cout << "Defult MateriaSource constructor called" << std::endl;
 	for (size_t i = 0; i < 4; i++)
 	{
 		this->t[i] = nullptr;
@@ -25,16 +25,21 @@ MateriaSource::MateriaSource()
 
 MateriaSource::~MateriaSource()
 {
-	std::cout << "Defult MateriaSource destructor called" << std::endl;
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (this->t[i] != nullptr)
+			delete this->t[i];
+	}
+	// std::cout << "Defult MateriaSource destructor called" << std::endl;
 }
 
 MateriaSource:: MateriaSource(MateriaSource &F){
-	std::cout << "Copy MateriaSource constructor called" << std::endl;
+	// std::cout << "Copy MateriaSource constructor called" << std::endl;
 	*this = F;
 }
 
 MateriaSource & MateriaSource:: operator=(const MateriaSource &F){
-	std::cout  << "Copy assignment MateriaSource constructor called" <<  std::endl;
+	// std::cout  << "Copy assignment MateriaSource constructor called" <<  std::endl;
 	if (this != &F)
 		*this = F;
 	return *this;

@@ -20,6 +20,7 @@ class Array
 		// Operators
 		Array & operator=(const Array<type> &assign);
 		type &	operator[]( int index );
+		const type &	operator[]( int index )const;
 		class Exception : public std::exception {
 		public:
 			const char *what() const throw(){
@@ -38,30 +39,33 @@ Array<type>::Array()
 {
 	_size = 0;
 	_a = nullptr;
-	std::cout << "\e[0;33mDefault Constructor called of Array\e[0m" << std::endl;
-}
-
-template <typename type>
-Array<type>::Array(const Array &copy)
-{
-	*this = copy;
-	std::cout << "\e[0;33mCopy Constructor called of Array\e[0m" << std::endl;
+	// std::cout << "\e[0;33mDefault Constructor called of Array\e[0m" << std::endl;
 }
 
 template <typename type>
 Array<type>::Array(unsigned int size)
 {
+	if (size > 0)
+		this->_a = new type[size];
+	else
+		this->_a = nullptr;
 	this->_size = size;
-	this->_a = new type[size];
-	std::cout << "\e[0;33mFields Constructor called of Array\e[0m" << std::endl;
+	// std::cout << "\e[0;33mFields Constructor called of Array\e[0m" << std::endl;
 }
 
+template <typename type>
+Array<type>::Array(const Array &copy)
+{
+	this->_size = 0;
+	*this = copy;
+	// std::cout << "\e[0;33mCopy Constructor called of Array\e[0m" << std::endl;
+}
 
 // Destructor
 template <typename type>
 Array<type>::~Array()
 {
-	std::cout << "\e[0;31mDestructor called of Array\e[0m" << std::endl;
+	// std::cout << "\e[0;31mDestructor called of Array\e[0m" << std::endl;
 	if (this->_size > 0)
 		delete [] this->_a;
 }
@@ -84,7 +88,15 @@ Array<type> & Array<type>::operator=(const Array<type> &a)
 }
 
 template <class type>
-type& Array<type>::operator[](int index)
+type& Array<type>::operator[](int index) 
+{
+    if (index < 0 || index >= (int)this->_size)
+        throw Array<type>::Exception();
+    return this->_a[index];
+}
+
+template <class type>
+const type& Array<type>::operator[](int index) const
 {
     if (index < 0 || index >= (int)this->_size)
         throw Array<type>::Exception();

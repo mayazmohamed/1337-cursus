@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:11:18 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/12 14:19:44 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/24 11:58:36 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int main(){
     numbers.push_back(6);
     try
     {
+        std::cout << *easyfind(numbers, 6)<< std::endl;
         std::cout << *easyfind(numbers, 10)<< std::endl;
+        std::cout << *easyfind(numbers, 2)<< std::endl;
     }
     catch(const std::exception& e)
     {

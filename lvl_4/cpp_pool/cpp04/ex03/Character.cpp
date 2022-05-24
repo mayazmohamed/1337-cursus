@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:24:25 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 17:24:30 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:15:53 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 Character::Character(/* args */)
 {
-	std::cout << "Defult Character constructor called" << std::endl;
-	for (int i = 0; i < 4; i++)
+	// std::cout << "Defult Character constructor called" << std::endl;
+	for (int i = 0; i < 4; i++){
 		this->inv[i] = nullptr;
+		this->src[i] = nullptr;
+	}
 
 }
 
@@ -28,16 +30,24 @@ Character ::Character(std::string const &name){
 
 Character::~Character()
 {
-	std::cout << "Defult Character destructor called" << std::endl;
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (this->inv[i] != nullptr)
+			delete this->inv[i];
+		if (this->src[i] != nullptr)
+			delete this->src[i];
+	}
+	
+	// std::cout << "Defult Character destructor called" << std::endl;
 }
 
 Character:: Character(Character &F){
-	std::cout << "Copy Character constructor called" << std::endl;
+	// std::cout << "Copy Character constructor called" << std::endl;
 	*this = F;
 }
 
 Character & Character:: operator=(const Character &F){
-	std::cout  << "Copy assignment Character constructor called" <<  std::endl;
+	// std::cout  << "Copy assignment Character constructor called" <<  std::endl;
 	if (this != &F)
 		*this = F;
 	return *this;
@@ -65,6 +75,13 @@ void Character:: use(int idx, ICharacter& target){
 
 void Character:: unequip(int idx){
 	if (idx >= 0 && idx < 4){
+		for (size_t i = 0; i < 4; i++)
+		{
+			if (this->src[i] == nullptr){
+				this->src[i] = this->inv[idx];
+				break;
+			}
+		}
 		this->inv[idx] = nullptr;
 	}
 	else

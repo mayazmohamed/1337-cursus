@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:09:15 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/12 16:42:11 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/24 12:07:55 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,29 @@
 Span::Span()
 {
 	this->N = 0;
-	std::cout << "\e[0;33mDefault Constructor called of Span\e[0m" << std::endl;
 }
 
 Span::Span(const Span &copy)
 {
 	*this = copy;
-	std::cout << "\e[0;33mCopy Constructor called of Span\e[0m" << std::endl;
 }
 
 Span::Span(unsigned int N)
 {
 	this->N = N;
-	std::cout << "\e[0;33mFields Constructor called of Span\e[0m" << std::endl;
 }
 
 
 // Destructor
 Span::~Span()
 {
-	std::cout << "\e[0;31mDestructor called of Span\e[0m" << std::endl;
 }
 
 
 // Operators
 Span & Span::operator=(const Span &assign)
 {
-	if (this->span != assign.span){
+	if (this != &assign){
 		this->span = assign.span;
 		this->N = assign.N;
 	}
@@ -80,7 +76,7 @@ int Span::shortestSpan(void){
 }
 
 void Span::rangeofiterators(std::vector<int>::iterator f, std::vector<int>::iterator l){
-	if ((l - f) + this->span.size() < this->N)
+	if ((l - f) + this->span.size() > this->N)
 		throw (std::length_error("Error: already N elements stored"));
 	std::copy(f, l, std::back_inserter(this->span));
 }

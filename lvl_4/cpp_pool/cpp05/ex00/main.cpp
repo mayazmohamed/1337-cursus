@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:47:43 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/09 15:31:35 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:27:54 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(){
 	std::string op;
 	int grade;
 
-	while (1){
+	while (std::cin.good()){
 		std::cout <<"pleas set name and grade" << std::endl;
 		std::cout << "Bureaucrat name > " ;
 		std::cin >> name;
@@ -27,7 +27,7 @@ int main(){
 		try
 		{
 			Bureaucrat b(name, grade);
-			while (1){
+			while (std::cin.good()){
 				std::cout << b << std::endl;
 				std::cout << "****************************" << std::endl;
 				std::cout << "* 1: Incriment             *" << std::endl;

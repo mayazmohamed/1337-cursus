@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:41:45 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/09 15:26:51 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 11:24:48 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,11 @@ void Bureaucrat::decrement(){
 }
 
 Bureaucrat:: Bureaucrat(std::string name, int grade): name(name){
-	if (grade > 150){
+	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
-	}
-	else if (grade < 1){
+	else if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
-	}
-	else{
-		this->grade = grade;
-	}
+	this->grade = grade;
 }
 
 Bureaucrat::Bureaucrat()

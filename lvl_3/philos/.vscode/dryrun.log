@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/momayaz/Desktop/1337-cursus/lvl_3/philos'
+cc -Wall -Wextra -Werror philo/list_creat.c philo/philo.c philo/philo_rout.c philo/utils.c -o ./philo/philo
+make: Leaving directory `/Users/momayaz/Desktop/1337-cursus/lvl_3/philos'
+ 

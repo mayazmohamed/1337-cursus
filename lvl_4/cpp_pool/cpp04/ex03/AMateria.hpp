@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 18:25:38 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 16:38:10 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:01:54 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	AMateria & operator=(const AMateria &F);
 	void settype(std::string type);
 	void setname(std::string name);
-	~AMateria();
+	virtual ~AMateria();
 };
 
 #endif

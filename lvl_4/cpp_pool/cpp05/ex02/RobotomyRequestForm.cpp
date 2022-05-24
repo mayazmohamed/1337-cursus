@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 18:21:51 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/10 18:51:17 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/18 12:31:49 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 RobotomyRequestForm::RobotomyRequestForm(): Form("RobotomyRequestForm", 0, 72, 45)
 {
+	this->target = "default";
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -34,7 +35,7 @@ RobotomyRequestForm & RobotomyRequestForm:: operator=(const RobotomyRequestForm 
 
 void RobotomyRequestForm:: execute(Bureaucrat const & executor) const{
 	if (this->getbool() != true){
-		std::cout << "is not signed" << std::endl;
+		std::cout << "is not signed 2 " << std::endl;
 		return;
 	}
 	if (executor.getGrade() > this->getexec()){

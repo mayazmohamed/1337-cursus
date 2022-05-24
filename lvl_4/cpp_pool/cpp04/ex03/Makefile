@@ -6,7 +6,7 @@
 #    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/07 16:31:31 by momayaz           #+#    #+#              #
-#    Updated: 2022/05/07 17:28:57 by momayaz          ###   ########.fr        #
+#    Updated: 2022/05/17 14:57:48 by momayaz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRC =	AMateria.cpp\
 		Cure.cpp \
 		Ice.cpp\
 		MateriaSource.cpp\
-		main.cpp
+		main.cpp\
 
 
 NAME = InterfaceAndRecap

@@ -6,14 +6,16 @@
 #    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/06 13:02:47 by momayaz           #+#    #+#              #
-#    Updated: 2022/05/06 13:43:42 by momayaz          ###   ########.fr        #
+#    Updated: 2022/05/17 13:32:44 by momayaz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	Animal.cpp \
 		main.cpp\
 		Cat.cpp\
-		Dog.cpp
+		Dog.cpp\
+		WrongCat.cpp\
+		WrongAnimal.cpp
 
 
 NAME = Polymorphism
@@ -24,7 +26,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(SRC) Animal.hpp Cat.hpp Dog.hpp
+$(NAME): $(SRC) Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp  WrongCat.hpp
 	$(CC) $(CFLAGS) $(SRC) -o $@
 
 clean:

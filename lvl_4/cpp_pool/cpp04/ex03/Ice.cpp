@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:23:22 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/07 17:07:58 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/17 15:16:53 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Ice::Ice(/* args */)
 {
-	std::cout << "Defult Ice constructor called" << std::endl;
+	// std::cout << "Defult Ice constructor called" << std::endl;
 	this->type = "ice";
 }
 
@@ -25,11 +25,11 @@ Ice ::Ice(std::string const &type){
 
 Ice::~Ice()
 {
-	std::cout << "Defult Ice destructor called" << std::endl;
+	// std::cout << "Defult Ice destructor called" << std::endl;
 }
 
 Ice:: Ice(Ice &F){
-	std::cout << "Copy Ice constructor called" << std::endl;
+	// std::cout << "Copy Ice constructor called" << std::endl;
 	*this = F;
 }
 
