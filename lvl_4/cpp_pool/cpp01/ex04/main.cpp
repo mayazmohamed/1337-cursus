@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 00:14:59 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/14 16:13:10 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/15 16:10:42 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@ int main(int ac, char *av[]){
 		std::cout << "fill not found or permission denied " << std::endl;
 		return (0);
 	}
-	std::string filename("tmp.txt");
+	std::string filename(std::string(av[1]) + ".Replace");
 	std::ofstream out;
 	out.open(filename);
-	int found = 0;
+	
 	while (getline(read, line)){
-		while ((found = line.find(std::string(av[2]), found)) != -1){
-			line.erase(found, strlen(av[3]));
-			line.insert(found, std::string (av[3]));
+		int found = line.find(av[2]);
+		while (found != -1){
+			line.erase(found, strlen(av[2]));
+			line.insert(found, av[3]);
+			found = line.find(av[2], found + strlen(av[3]));
 		}
-		out << line << std::endl;
+		out << line;
+		if (read.peek() != EOF)
+			out << std::endl;
 	}
 	out.close();
 	read.close();

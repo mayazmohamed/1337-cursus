@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 21:01:40 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/30 21:50:36 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/13 13:57:56 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,10 @@ void Harl::complain(std::string level){
 	{
 	case 0:
 		debug();
-		info();
-		warning();
-		error();
-		break;
 	case 1:
 		info();
-		warning();
-		error();
-		break;
 	case 2:
 		warning();
-		error();
-		break;
 	case 3:
 		error();
 		break;

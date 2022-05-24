@@ -25,7 +25,7 @@
 | 2 | [so_long](./lvl_2/so_long) | C | 60 hours | 1000 | ![momayaz's 42 so_long Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2457862) | 3.25 |
 | 2 | [pipex](./lvl_2/pipex) | C | 50 hours | 1142 | ![momayaz's 42 pipex Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2463057) | 3.50 |
 | 3 | [philosophers](./lvl_3/philosophers) | C | 70 hours | 3360 | ![momayaz's 42 philo Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2522279) | 4.08 |
-| 3 | ![minishell](./lvl_3/minishell) | C | 210 hours | 2814 | ![momayaz's 42 minishell Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2529005) | 4.29 |
+| 3 | [minishell](./lvl_3/minishell) | C | 210 hours | 2814 | ![momayaz's 42 minishell Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2529005) | 4.29 |
 | 4 | NetPractice | Networking | 50 hours | 3160 | ![momayaz's 42 NetPractice Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2540809) | 4.48 |
 | 4 | [cub3D](./lvl_4/Cub3d) | C - mlx | 280 hours | 5775 | ![momayaz's 42 cub3D Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2570287) | 4.91 |
 | 4 | [CPP Module 08](./lvl_4/cpp_pool) | C++ | 7 * 9 | 9660 | ![momayaz's 42 CPP Module 08 Score](https://badge42.vercel.app/api/v2/cl16atahm000609mbeff5wwta/project/2598808) | 5.50 |

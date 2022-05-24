@@ -6,30 +6,73 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 00:27:38 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/04 15:15:53 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/10 13:05:09 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
+std::string contact:: getfirst()const{
+	return this->firstName;
+}
+
+std::string contact:: getlast()const{
+	return this->lastName;
+}
+
+std::string contact:: getnick()const{
+	return this->nickName;
+}
+
+std::string contact:: getphon()const{
+	return this->phoneNumber;
+}
+
+std::string contact:: getdark()const{
+	return this->darkestSecret;
+}
+
+void contact:: setfirst(std::string firstName){
+	this->firstName = firstName;
+}
+
+void contact:: setlast(std::string lastName){
+	this->lastName = lastName;
+}
+
+
+void contact:: setnick(std::string nickName){
+	this->nickName = nickName;
+}
+
+
+void contact:: setphone(std::string phone){
+	this->phoneNumber = phone;
+}
+
+void contact:: setdark(std::string dark){
+	this->darkestSecret = dark;
+}
+
+
 void contact:: fill(std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret){
-			this->firstName = firstName;
-			this->lastName = lastName;
-			this->nickName = nickName;
-			this->phoneNumber = phoneNumber;
-			this->darkestSecret = darkestSecret;
+			this->setfirst(firstName);
+			this->setlast(lastName);
+			this->setnick(nickName);
+			this->setphone(phoneNumber);
+			this->setdark(darkestSecret);
 		};
 void contact:: affichContacts(){
 			std::cout << "firstName >>";
-			std::cout << this->firstName << std::endl;
+			std::cout << this->getfirst() << std::endl;
 			std::cout << "lastName >>";
-			std::cout << this->lastName << std::endl;
+			std::cout << this->getlast() << std::endl;
 			std::cout << "nickName >>";
-			std::cout << this->nickName << std::endl;
+			std::cout << this->getnick() << std::endl;
 			std::cout << "phoneNumber >>";
-			std::cout << this->phoneNumber << std::endl;
+			std::cout << this->getphon() << std::endl;
 			std::cout << "darkestSecret >>";
-			std::cout << this->darkestSecret << std::endl;
+			std::cout << this->getdark() << std::endl;
 		};
 void contact:: find(){
 			if(firstName.length() > 10){

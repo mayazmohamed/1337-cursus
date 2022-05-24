@@ -1,6 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/momayaz/Desktop/1337-cursus/lvl_4/cpp_pool/cpp04'
-make: Leaving directory `/Users/momayaz/Desktop/1337-cursus/lvl_4/cpp_pool/cpp04'
- 
-make: *** No targets specified and no makefile found.  Stop.
-

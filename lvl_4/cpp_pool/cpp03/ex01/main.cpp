@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:17:42 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/05 12:24:28 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/16 13:27:41 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(){
 	std::cout << "* defult: set the players value by defult *" << std::endl;
 	std::cout << "* EXIT                                    *" << std::endl;
 	std::cout << "*******************************************" << std::endl;
-	while (1)
+	while (std::cin.good())
 	{
 		std::cout << "youre option please: >> ";
 		std::cin >> op;
@@ -105,7 +105,7 @@ int main(){
 		std::cout << players[i].getAD() << std::endl;
 		i++;
 	}
-	while (1){
+	while (std::cin.good()){
 		std::cout << "select player by Name > " ;
 		std::cin >> search;
 		std:: cout << std::endl;
@@ -125,24 +125,6 @@ int main(){
 			std:: cout << std::endl;
 			continue ;
 		}
-		std::cout << "select your target > " ;
-		std::cin >> target;
-		std:: cout << std::endl;
-		if (!(search.compare(target))){
-			std::cout << "Really !!!" << std::endl;
-			continue;
-		}
-		j = 0;
-		while (j < 5){
-			if (!(players[j].getname().compare(target))){
-				break;
-			}
-			if (j == 5){
-				std::cout << "target does not exist" ;
-				break;
-			}
-			j++;
-		}
 		std::cout << "*********************" << std::endl;
 		std::cout << "* attack            *" << std::endl;
 		std::cout << "* berepaired        *" << std::endl;
@@ -153,6 +135,24 @@ int main(){
 		std::cin >> op;
 		std::cout << std::endl;
 		if (!(op.compare("attack"))){
+			std::cout << "select your target > " ;
+			std::cin >> target;
+			std:: cout << std::endl;
+			if (!(search.compare(target))){
+				std::cout << "Really !!!" << std::endl;
+				continue;
+		}
+		j = 0;
+		while (j < 5){
+			if (!(players[j].getname().compare(target))){
+				break;
+			}
+			j++;
+		}
+		if (j == 5){
+			std::cout << "target does not exist" ;
+			continue;
+		}
 			if (players[i].getEP() > 0 && players[i].getHP() > 0){
 				players[i].attack(target);
 				players[j].takeDamage((unsigned int)(players[i].getAD()));

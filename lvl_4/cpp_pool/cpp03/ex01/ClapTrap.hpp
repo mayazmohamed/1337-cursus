@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:17:39 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/05 12:42:08 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/16 13:29:42 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string name;
 		int HP;
 		int EP;

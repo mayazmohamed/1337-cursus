@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 00:25:29 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/29 14:16:17 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/13 11:35:40 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ Zombie:: Zombie(std::string name){
 }
 
 Zombie:: ~Zombie(){
-	std::cout << "Zombie dying" << std::endl;
+	std::cout << this->name << " dying" << std::endl;
 }
 

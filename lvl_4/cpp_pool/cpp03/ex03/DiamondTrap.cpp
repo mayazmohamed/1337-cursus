@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:03:10 by momayaz           #+#    #+#             */
-/*   Updated: 2022/05/05 16:11:44 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/05/16 13:39:02 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void DiamondTrap::attack(const std::string& target){
 
 void DiamondTrap:: whoAmI(){
 	if (this->getEP() > 0 && this->getHP() > 0){
-		std::cout << "DiamondTrap name id: " << this->name << "and ClapTrap name is: " << this->getname() << std::endl;
+		std::cout << "DiamondTrap name id: " << this->name << " and ClapTrap name is: " << this->getname() << std::endl;
 		this->setEP(this->getEP() -  1);
 	}
 	else
