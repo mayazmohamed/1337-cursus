@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Mon May 23 18:35:34 2022
+# Make data base, printed on Wed Jun 15 12:16:37 2022
 
 # Variables
 
@@ -41,15 +41,11 @@ SRCM = src/utils1.c src/utils2.c src/utils3.c src/utils4.c src/utils5.c src/spli
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbx80032z_/T/vscode-ipc-cfdbaff5-cc4b-4a98-a6c9-d40dcf05db99.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbx80032z_/T/vscode-ipc-896f2061-ca1a-4c4e-aa2e-e9d92af37c2f.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.Vkhdt1v0zX/Render
-# environment
-PATH = /Users/momayaz/.brew/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands
-# environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
+PATH = /usr/bin:/bin:/usr/sbin:/sbin
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -57,11 +53,9 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.K0cz4LOfaJ/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.w0AZBbvFba/Listeners
 # automatic
 %F = $(notdir $%)
-# environment
-HOMEBREW_TEMP = /tmp/momayaz/Homebrew/Temp
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -81,8 +75,6 @@ LOGNAME = momayaz
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-ZSH = /Users/momayaz/.oh-my-zsh
-# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
@@ -93,8 +85,6 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-HOMEBREW_CACHE = /tmp/momayaz/Homebrew/Caches
-# environment
 SHLVL = 1
 # default
 MAKE_VERSION := 3.81
@@ -104,8 +94,6 @@ USER = momayaz
 .DEFAULT_GOAL := all
 # makefile (from `Makefile', line 43)
 NAME = minishell
-# environment
-LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
@@ -125,27 +113,19 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-NVM_DIR = /Users/momayaz/.nvm
-# environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
+XPC_SERVICE_NAME = com.microsoft.VSCode.2176
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x18BEA:0:0
-# environment
-COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # environment
-PAGER = less
-# environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186a8
 # automatic
 ^F = $(notdir $^)
 # default
@@ -157,9 +137,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1714
+VSCODE_PID = 20219
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=4/110=4%
+# Load=63/1024=6%, Rehash=0, Collisions=4/100=4%
 
 # Pattern-specific Variable Values
 
@@ -167,9 +147,9 @@ VSCODE_PID = 1714
 
 # Directories
 
-# . (device 16777227, inode 1497624): 7 files, no impossibilities.
+# . (device 16777225, inode 1497624): 8 files, no impossibilities.
 
-# 7 files, no impossibilities in 1 directories.
+# 8 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -295,7 +275,6 @@ minishell: src/utils1.c src/utils2.c src/utils3.c src/utils4.c src/utils5.c src/
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: `'
 #  File does not exist.
- 
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -311,6 +290,10 @@ minishell: src/utils1.c src/utils2.c src/utils3.c src/utils4.c src/utils5.c src/
 # automatic
 # < := src/utils1.c
 # automatic
+ 
+make: brew: Command not found
+make: brew: Command not found
+
 # ^ := src/utils1.c src/utils2.c src/utils3.c src/utils4.c src/utils5.c src/split.c src/garbage1.c src/garbage2.c src/garbage3.c src/check_syntax1.c src/check_syntax2.c src/env_fct1.c src/env_fct2.c src/parsing1.c src/parsing2.c src/parsing3.c src/files1.c src/files2.c src/split_echo.c src/wildcard.c src/double_join.c src/built_ins1.c src/built_ins2.c src/ft_exec1.c src/ft_exec2.c src/signals.c minishell.c minishell.h
 # automatic
 # ? := src/utils1.c src/utils2.c src/utils3.c src/utils4.c src/utils5.c src/split.c src/garbage1.c src/garbage2.c src/garbage3.c src/check_syntax1.c src/check_syntax2.c src/env_fct1.c src/env_fct2.c src/parsing1.c src/parsing2.c src/parsing3.c src/files1.c src/files2.c src/split_echo.c src/wildcard.c src/double_join.c src/built_ins1.c src/built_ins2.c src/ft_exec1.c src/ft_exec2.c src/signals.c minishell.c minishell.h
@@ -524,6 +507,6 @@ src/wildcard.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon May 23 18:35:34 2022
+# Finished Make data base on Wed Jun 15 12:16:37 2022
 
  
