@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 10:05:44 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/09 12:21:01 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/07/13 14:54:07 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,27 @@
 #include <iostream>
 #include <string.h>
 #include "../implement/pair.hpp"
+#include "../implement/iterator.hpp"
+
 
 namespace ft{
+    
+
+    template <bool Cond, class IsTrue, class IsFalse>
+    struct ifConst;
+
+    template <class IsTrue, class IsFalse>
+    struct ifConst<true, IsTrue, IsFalse>
+    {
+        typedef IsTrue type;
+    };
+
+    template <class IsTrue, class IsFalse>
+    struct ifConst<false, IsTrue, IsFalse>
+    {
+        typedef IsFalse type;
+    };
+
     
     template <class T>
     struct Node {
@@ -195,6 +214,7 @@ namespace ft{
             }
                 node->isBlack = true;
         }
+            
             void deleteN(nodePtr root, int k){
                 nodePtr node = _nil;
                 nodePtr x, y;
@@ -240,6 +260,40 @@ namespace ft{
                 _size--;
             }
             
+            nodePtr minimum(nodePtr node){
+                while (node->left != _nil)
+                    node = node->left;
+                return node;
+            }
+
+            nodePtr maximum(nodePtr node){
+                while (node->right != _nil)
+                    node = node->right;
+                return node;
+            }
+            
+            nodePtr successor(nodePtr node){
+                if (node->right != _nil)
+                    return minimum(node->right);
+                nodePtr y = node->parent;
+                while (y != _nil && node == y->right){
+                    node = y;
+                    y = y->parent;
+                }
+                return y;
+            }
+
+            nodePtr predecessor(nodePtr node){
+                if (node->left != _nil)
+                    return maximum(node->left);
+                nodePtr y = node->parent;
+                while (y != _nil && node == y->left){
+                    node = y;
+                    y = y->parent;
+                }
+                return y;
+            }
+            
         public:
            RedBlackTree(){
                 _size = 0;
@@ -249,12 +303,15 @@ namespace ft{
                 _nil->right = nullptr;
                 _root = _nil;
                 }
+           
             ~RedBlackTree(){
             }
+            
             RedBlackTree(const RedBlackTree &copy){
              _root = copy._root;
              _size = copy._size;
             }
+            
             RedBlackTree & operator=(const RedBlackTree &assign){
              if (this != &assign){
                   _root = assign._root;
@@ -281,6 +338,7 @@ namespace ft{
                 std::cout << "[ " << root->value.first << " , " << root->value.second << " ]" << " (" << (root->isBlack ? "BLACK" : "RED") << ")" << "\n";
                 printTree(count ,root->left, space);
             }
+            
             void insert(Key k, Value val){
                 nodePtr node = _alloc.allocate(1);
                 node->parent = nullptr;
@@ -317,6 +375,7 @@ namespace ft{
                 insertFixup(node);
                 _size++;
             }
+            
             void transplant(nodePtr u, nodePtr v){
                 if (u->parent == nullptr)
                     _root = v;
@@ -326,17 +385,164 @@ namespace ft{
                     u->parent->right = v;
                 v->parent = u->parent;
             }
+            
             nodePtr minimum(nodePtr node){
                 while (node->left != _nil)
                     node = node->left;
                 return node;
             }
+            
             void deleteNode(int k){
                 deleteN(_root,  k);
             }
     };
 
-}
+    template<class T, bool isConst = false>
+    class iteratorRBT{
+        public:
+            typedef T value_type;
+            typedef typename ifConst<isConst, T const &, T &>::type reference;
+            typedef typename ifConst<isConst, T const &, T &>::type pointer;
+            typedef std::ptrdiff_t difference_type;
+            typedef std::bidirectional_iterator_tag iterator_category;
+            typedef node<T>* nodePtr;
 
+            iteratorRBT(nodePtr node){
+                _node = node;
+            }
+            
+            iteratorRBT(const iteratorRBT &copy){
+                _node = copy._node;
+            }
+
+            iteratorRBT(){}
+            
+            ~iteratorRBT(){}
+            
+            iteratorRBT & operator=(const iteratorRBT &assign){
+                if (this != &assign){
+                    _node = assign._node;
+                }
+                return *this;
+            }
+
+            reference operator*(){
+                return _node->value;
+            }
+
+            pointer operator->(){
+                return &_node->value;
+            }
+
+            iteratorRBT & operator++(){
+                _node = RedBlackTree<T>::successor(_node);
+                return *this;
+            }
+
+            iteratorRBT operator++(int){
+                iteratorRBT temp = *this;
+                _node = RedBlackTree<T>::successor(_node);
+                return temp;
+            }
+
+            iteratorRBT & operator--(){
+                _node = RedBlackTree<T>::predecessor(_node);
+                return *this;
+            }
+
+            iteratorRBT operator--(int){
+                iteratorRBT temp = *this;
+                _node = RedBlackTree<T>::predecessor(_node);
+                return temp;
+            }
+
+            bool operator==(const iteratorRBT &rhs){
+                return _node == rhs._node;
+            }
+
+            bool operator!=(const iteratorRBT &rhs){
+                return _node != rhs._node;
+            }
+
+            nodePtr getNode(){
+                return _node;
+            }
+
+        private:
+            nodePtr _node;
+            
+    };
+
+    template<class Iterator>
+    class iteratorRBTreverse{
+        public:
+            typename iterator iterator_type;
+            typename iterator_traits<Iterator>::iterator_category iterator_category;
+            typename iterator_traits<Iterator>::value_type value_type;
+            typename iterator_traits<Iterator>::difference_type difference_type;
+            typename iterator_traits<Iterator>::pointer pointer;
+            typename iterator_traits<Iterator>::reference reference;
+        
+        iteratorRBTreverse(): _base(iterator_type()){}
+        
+        iteratorRBTreverse(Iterator it): _base(it){
+        }
+
+        iteratorRBTreverse(const iteratorRBTreverse &copy): _base(copy._base){}
+
+        iteratorRBTreverse & operator=(const iteratorRBTreverse &assign){
+            if (this != &assign){
+                _base = assign._base;
+            }
+            return *this;
+        }
+        
+        iterator_type base(){
+            return _base;
+        }
+        
+        iteratorRBTreverse & operator++(){
+            --_base;
+            return *this;
+        }
+
+        iteratorRBTreverse operator++(int){
+            iteratorRBTreverse temp = *this;
+            --_base;
+            return temp;
+        }
+
+        iteratorRBTreverse & operator--(){
+            ++_base;
+            return *this;
+        }
+
+        iteratorRBTreverse operator--(int){
+            iteratorRBTreverse temp = *this;
+            ++_base;
+            return temp;
+        }
+
+        bool operator==(const RBTreverse_iterator &rhs) const{
+            return _base == rhs._base;
+        }
+
+        bool operator!=(const RBTreverse_iterator &rhs) const{
+            return _base != rhs._base;
+        }
+
+        reference operator*() const{
+            return *_base;
+        }
+
+        pointer operator->() const{
+            return _base;
+        }
+        
+        private:
+            iterator_type _base;
+    };  
+    
+}
 
 #endif
