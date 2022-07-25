@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 10:05:44 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/13 14:54:07 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/07/25 14:45:26 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@
 
 namespace ft{
     
-
+    template<class Iterator>
+    class iteratorRBTreverse;
+    
+    template<class T, bool isConst = false>
+    class iteratorRBT;
+    
     template <bool Cond, class IsTrue, class IsFalse>
     struct ifConst;
 
@@ -43,9 +48,9 @@ namespace ft{
         T value;
         bool isBlack;
         bool isLeftChild;
-        Node *parent;
-        Node *left;
-        Node *right;
+        Node<T> *parent;
+        Node<T> *left;
+        Node<T> *right;
         
         Node () {
             value = T();
@@ -65,23 +70,29 @@ namespace ft{
         }
     };
 
-     template <class Key, class Value, class Alloc = std::allocator< Node< ft::pair< Key, Value > > > >
+     template <class T, class Compare = std::less<T>, class Alloc = std::allocator<T> >
     class RedBlackTree
     {
         typedef std::size_t size_type;
-        typedef Key key_type;
-        typedef Value mapped_type;
+        typedef T value_type;
+        typedef Node<value_type> node_type;
+        typedef node_type* nodePtr;
+        typedef node_type& node_reference;
         typedef Alloc allocator_type;
-        typedef ft::pair< key_type, mapped_type> value_type;
-        typedef Node<value_type> Node;
-        typedef Node* nodePtr;
-        typedef Node& nodeRef;
+        typedef std::allocator<node_type> node_allocator_type;
+        typedef iteratorRBT<value_type> iterator;
+        typedef iteratorRBT<value_type> const_iterator;
+        typedef iteratorRBTreverse<iterator> reverse_iterator;
+        typedef iteratorRBTreverse<const_iterator> const_reverse_iterator;
         
         private :
             nodePtr _root;
             nodePtr _nil;
             size_type _size;
             allocator_type _alloc;
+            node_allocator_type _node_alloc;
+            Compare _comp;
+            
             
             void leftRotate(nodePtr node){
                 nodePtr right = node->right;
@@ -215,13 +226,13 @@ namespace ft{
                 node->isBlack = true;
         }
             
-            void deleteN(nodePtr root, int k){
+            void deleteN(nodePtr root, value_type k){
                 nodePtr node = _nil;
                 nodePtr x, y;
                 while (root != _nil){
-                    if (root->value.first == k)
+                    if (!_comp(root->value, k) && !_comp(k, root->value))
                         node = root;
-                    if (root->value.first <= k)
+                    if (_comp(root->value, k))
                         root = root->right;
                     else
                         root = root->left;
@@ -254,7 +265,7 @@ namespace ft{
                     y->left->parent = y;
                     y->isBlack = node->isBlack;
                 }
-                _alloc.deallocate(node, 1);
+                _node_alloc.deallocate(node, 1);
                 if (y_original_color == true)
                     deleteFixup(x);
                 _size--;
@@ -297,7 +308,8 @@ namespace ft{
         public:
            RedBlackTree(){
                 _size = 0;
-                _nil = _alloc.allocate(1);
+                _nil = _node_alloc.allocate(1);
+                _node_alloc.construct(_nil, Node<value_type>(value_type()));
                 _nil->isBlack = true;
                 _nil->left = nullptr;
                 _nil->right = nullptr;
@@ -335,15 +347,14 @@ namespace ft{
                 printTree(count ,root->right, space);
                 for (int i = count; i < space; i++)
                     std::cout << "\t";
-                std::cout << "[ " << root->value.first << " , " << root->value.second << " ]" << " (" << (root->isBlack ? "BLACK" : "RED") << ")" << "\n";
+                std::cout << "[ " << root->value << " , " << root->value << " ]" << " (" << (root->isBlack ? "BLACK" : "RED") << ")" << "\n";
                 printTree(count ,root->left, space);
             }
             
-            void insert(Key k, Value val){
-                nodePtr node = _alloc.allocate(1);
+            void insert(value_type value){
+                nodePtr node = _node_alloc.allocate(1);
                 node->parent = nullptr;
-                node->value.first = k;
-                node->value.second = val;
+                node->value = value;
                 node->isBlack = false;
                 node->left = _nil;
                 node->right = _nil;
@@ -351,7 +362,7 @@ namespace ft{
                 nodePtr x = _root;
                 while (x != _nil){
                     y = x;
-                    if (node->value.first < x->value.first)
+                    if (_comp(node->value, x->value))
                         x = x->left;
                     else
                         x = x->right;
@@ -359,7 +370,7 @@ namespace ft{
                 node->parent = y;
                 if (y == nullptr)
                     _root = node;
-                else if (node->value.first < y->value.first)
+                else if (_comp(node->value , y->value))
                     y->left = node;
                 else
                     y->right = node;
@@ -386,18 +397,12 @@ namespace ft{
                 v->parent = u->parent;
             }
             
-            nodePtr minimum(nodePtr node){
-                while (node->left != _nil)
-                    node = node->left;
-                return node;
-            }
-            
-            void deleteNode(int k){
-                deleteN(_root,  k);
+            void deleteNode(value_type value){
+                deleteN(_root, value);
             }
     };
 
-    template<class T, bool isConst = false>
+    template<class T, bool isConst>
     class iteratorRBT{
         public:
             typedef T value_type;
@@ -405,7 +410,7 @@ namespace ft{
             typedef typename ifConst<isConst, T const &, T &>::type pointer;
             typedef std::ptrdiff_t difference_type;
             typedef std::bidirectional_iterator_tag iterator_category;
-            typedef node<T>* nodePtr;
+            typedef Node<T>* nodePtr;
 
             iteratorRBT(nodePtr node){
                 _node = node;
@@ -476,12 +481,12 @@ namespace ft{
     template<class Iterator>
     class iteratorRBTreverse{
         public:
-            typename iterator iterator_type;
-            typename iterator_traits<Iterator>::iterator_category iterator_category;
-            typename iterator_traits<Iterator>::value_type value_type;
-            typename iterator_traits<Iterator>::difference_type difference_type;
-            typename iterator_traits<Iterator>::pointer pointer;
-            typename iterator_traits<Iterator>::reference reference;
+            typedef Iterator iterator_type;
+            typedef typename iterator_traits<Iterator>::iterator_category iterator_category;
+            typedef typename iterator_traits<Iterator>::value_type value_type;
+            typedef typename iterator_traits<Iterator>::difference_type difference_type;
+            typedef typename iterator_traits<Iterator>::pointer pointer;
+            typedef typename iterator_traits<Iterator>::reference reference;
         
         iteratorRBTreverse(): _base(iterator_type()){}
         
@@ -523,11 +528,11 @@ namespace ft{
             return temp;
         }
 
-        bool operator==(const RBTreverse_iterator &rhs) const{
+        bool operator==(const iteratorRBTreverse &rhs) const{
             return _base == rhs._base;
         }
 
-        bool operator!=(const RBTreverse_iterator &rhs) const{
+        bool operator!=(const iteratorRBTreverse &rhs) const{
             return _base != rhs._base;
         }
 

@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:05:23 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/04 16:24:10 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/07/25 14:18:19 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ public:
 	    return *this;
 	}
     void operator++() {
-        this._ptr++;
+        this->_ptr++;
     }
     iterators operator++(int){
 		iterators tmp = *this;
-		this._ptr++;
+		this->_ptr++;
 		return tmp;
 	}
     void operator--() {
-        this._ptr--;
+        this->_ptr--;
     }
     iterators operator--(int){
 		iterators tmp = *this;
-		this._ptr--;
+		this->_ptr--;
 		return tmp;
 	}
     
@@ -100,12 +100,15 @@ public:
 		return (_ptr - F._ptr);
 	}
 	
+
+	template<class U>
 	typename ft::enable_if<ft::is_integral<U>::value , iterators>::type operator+(const U& val){
 		iterators tmp = *this;
 		tmp._ptr += val;
 		return tmp;
 	}
 
+	template<class U>
 	typename ft::enable_if<ft::is_integral<U>::value , iterators>::type operator-(const U& val){
 		iterators tmp = *this;
 		tmp._ptr -= val;
@@ -126,12 +129,12 @@ class reverse_iterator
 {
 public:
     typedef std::size_t size_type;
-	typedef typename ft::iterator_traits<T>::difference_type difference_type;
-	typedef typename ft::iterator_traits<T>::value_type value_type;
-	typedef typename ft::iterator_traits<T>::pointer pointer;
-	typedef typename ft::iterator_traits<T>::reference reference;
-	typedef typename ft::iterator_traits<T>::iterator_category iterator_category;
 	typedef Iterator iterator_type;
+	typedef typename ft::iterator_traits<iterator_type>::difference_type difference_type;
+	typedef typename ft::iterator_traits<iterator_type>::value_type value_type;
+	typedef typename ft::iterator_traits<iterator_type>::pointer pointer;
+	typedef typename ft::iterator_traits<iterator_type>::reference reference;
+	typedef typename ft::iterator_traits<iterator_type>::iterator_category iterator_category;
 private:
     iterator_type _ptr;
 public:
