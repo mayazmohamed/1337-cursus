@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 10:05:44 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/25 14:45:26 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/07/27 14:08:25 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,9 @@ namespace ft{
     template<class Iterator>
     class iteratorRBTreverse;
     
-    template<class T, bool isConst = false>
+    template<class T>
     class iteratorRBT;
     
-    template <bool Cond, class IsTrue, class IsFalse>
-    struct ifConst;
-
-    template <class IsTrue, class IsFalse>
-    struct ifConst<true, IsTrue, IsFalse>
-    {
-        typedef IsTrue type;
-    };
-
-    template <class IsTrue, class IsFalse>
-    struct ifConst<false, IsTrue, IsFalse>
-    {
-        typedef IsFalse type;
-    };
 
     
     template <class T>
@@ -52,32 +38,20 @@ namespace ft{
         Node<T> *left;
         Node<T> *right;
         
-        Node () {
-            value = T();
-            isBlack = false;
-            parent = nullptr;
-            left = nullptr;
-            right = nullptr;
-            isLeftChild = false;
-        } 
-        Node(T val) {
-            value = val;
-            isBlack = false;
-            parent = nullptr;
-            left = nullptr;
-            right = nullptr;
-            isLeftChild = false;
-        }
+        Node () : value(T()), isBlack(true), isLeftChild(false), parent(nullptr), left(nullptr), right(nullptr) {}
+        Node(T val) : value(val), isBlack(true), isLeftChild(false), parent(nullptr), left(nullptr), right(nullptr) {}
     };
 
      template <class T, class Compare = std::less<T>, class Alloc = std::allocator<T> >
     class RedBlackTree
     {
+    public:
         typedef std::size_t size_type;
         typedef T value_type;
         typedef Node<value_type> node_type;
         typedef node_type* nodePtr;
         typedef node_type& node_reference;
+        typedef Compare key_compare;
         typedef Alloc allocator_type;
         typedef std::allocator<node_type> node_allocator_type;
         typedef iteratorRBT<value_type> iterator;
@@ -238,7 +212,6 @@ namespace ft{
                         root = root->left;
                 }
                 if (node == _nil){
-                    std::cout << "Key not found" << std::endl;
                     return;
                 }
                 y = node;
@@ -265,48 +238,36 @@ namespace ft{
                     y->left->parent = y;
                     y->isBlack = node->isBlack;
                 }
-                _node_alloc.deallocate(node, 1);
+                clearNode(node);
                 if (y_original_color == true)
                     deleteFixup(x);
+                _nil->parent = nullptr;
                 _size--;
             }
             
-            nodePtr minimum(nodePtr node){
-                while (node->left != _nil)
+            static nodePtr minimum(nodePtr node){
+                 if (!node || !node->left)
+                    return nullptr;
+
+                while (node->left->parent)
                     node = node->left;
                 return node;
             }
 
-            nodePtr maximum(nodePtr node){
-                while (node->right != _nil)
+            static nodePtr maximum(nodePtr node){
+                 if (!node || !node->right)
+                    return nullptr;
+
+                while (node->right && node->right->parent)
                     node = node->right;
                 return node;
             }
             
-            nodePtr successor(nodePtr node){
-                if (node->right != _nil)
-                    return minimum(node->right);
-                nodePtr y = node->parent;
-                while (y != _nil && node == y->right){
-                    node = y;
-                    y = y->parent;
-                }
-                return y;
-            }
-
-            nodePtr predecessor(nodePtr node){
-                if (node->left != _nil)
-                    return maximum(node->left);
-                nodePtr y = node->parent;
-                while (y != _nil && node == y->left){
-                    node = y;
-                    y = y->parent;
-                }
-                return y;
-            }
             
         public:
-           RedBlackTree(){
+           explicit RedBlackTree(
+                const key_compare &comp = key_compare(),
+                const allocator_type &alloc = allocator_type()) : _alloc(alloc), _comp(comp){
                 _size = 0;
                 _nil = _node_alloc.allocate(1);
                 _node_alloc.construct(_nil, Node<value_type>(value_type()));
@@ -319,17 +280,66 @@ namespace ft{
             ~RedBlackTree(){
             }
             
-            RedBlackTree(const RedBlackTree &copy){
-             _root = copy._root;
-             _size = copy._size;
+            RedBlackTree(const RedBlackTree &copy) : _nil(nullptr), _root(nullptr){
+             *this = copy;
             }
             
             RedBlackTree & operator=(const RedBlackTree &assign){
              if (this != &assign){
-                  _root = assign._root;
-                  _size = assign._size;
+                    _alloc = assign._alloc;
+                    _comp = assign._comp;
+                    _node_alloc = assign._node_alloc;
+                    _root = copyRBT(assign._root, assign._nil);
+                    _size = assign._size;
              }
              return *this;
+            }
+            
+            static nodePtr successor(nodePtr node){
+                if (node->right && node->right->parent)
+                    return minimum(node->right);
+                nodePtr y = node->parent;
+                while (y && node == y->right){
+                    node = y;
+                    y = y->parent;
+                }
+                return y;
+            }
+
+            static nodePtr predecessor(nodePtr node){
+                if (node->left && node->left->parent)
+                    return maximum(node->left);
+                nodePtr y = node->parent;
+                while (y && node == y->left){
+                    node = y;
+                    y = y->parent;
+                }
+                return y;
+            }
+            
+            nodePtr copyRBT(nodePtr node, nodePtr null) {
+                if (node == null)
+                    return _nil;
+                    
+                nodePtr new_node = _node_alloc.allocate(1);
+                _node_alloc.construct(new_node, node_type(node->value));
+                new_node->isBlack = node->isBlack;
+                new_node->left = copyRBT(node->left, null);
+                new_node->right = copyRBT(node->right, null);
+                new_node->parent = nullptr;
+                if (new_node->left != _nil)
+                    new_node->left->parent = new_node;
+                if (new_node->right != _nil)
+                    new_node->right->parent = new_node;
+                return new_node;
+            }
+
+            nodePtr getRoot() const {
+                return _root;
+            }
+
+            nodePtr getNull() const {
+                return _nil;
             }
             
             void printTree(int count, nodePtr root = nullptr, int space = 0){
@@ -354,7 +364,7 @@ namespace ft{
             void insert(value_type value){
                 nodePtr node = _node_alloc.allocate(1);
                 node->parent = nullptr;
-                node->value = value;
+                _node_alloc.construct(node, node_type(value));
                 node->isBlack = false;
                 node->left = _nil;
                 node->right = _nil;
@@ -400,24 +410,78 @@ namespace ft{
             void deleteNode(value_type value){
                 deleteN(_root, value);
             }
+
+            nodePtr begin() const
+            {
+                return minimum(_root);
+            }
+
+            nodePtr end() const
+            {
+                return maximum(_root);
+            }
+            size_type size() const {
+                return _size;
+            }
+
+            size_type max_size() const {
+                return _node_alloc.max_size();
+            }
+
+            void clearNode(nodePtr node){
+                if (node == _nil)
+                    return;
+                _node_alloc.destroy(node);
+                _node_alloc.deallocate(node, 1);
+            }
+
+            void clearRBT(nodePtr node){
+                if (node  == _nil)
+                    return;
+                clearRBT(node->left);
+                clearRBT(node->right);
+                _node_alloc.destroy(node);
+                _node_alloc.deallocate(node, 1);
+            }
+            void freeTree(){
+                clearRBT(_root);
+                _root = _nil;
+                _size = 0;
+            }
+
+            nodePtr find(const value_type &key) const
+            {
+                nodePtr current = _root;
+                nodePtr tmp = nullptr;
+
+                while (current != _nil)
+                {
+                    if (!(_comp(current->value, key) || _comp(key, current->value)))
+                        tmp = current;
+                    if (_comp(current->value, key))
+                        current = current->right;
+                    else
+                        current = current->left;
+                }
+                return (tmp);
+            }
     };
 
-    template<class T, bool isConst>
+    template<class T>
     class iteratorRBT{
         public:
+            typedef std::size_t size_type;
             typedef T value_type;
-            typedef typename ifConst<isConst, T const &, T &>::type reference;
-            typedef typename ifConst<isConst, T const &, T &>::type pointer;
+            typedef value_type& reference;
+            typedef value_type* pointer;
             typedef std::ptrdiff_t difference_type;
             typedef std::bidirectional_iterator_tag iterator_category;
-            typedef Node<T>* nodePtr;
+            typedef Node<value_type>* nodePtr;
 
-            iteratorRBT(nodePtr node){
-                _node = node;
-            }
+            iteratorRBT(nodePtr node): _node(node){}
             
             iteratorRBT(const iteratorRBT &copy){
-                _node = copy._node;
+                *this = copy;
             }
 
             iteratorRBT(){}
@@ -431,11 +495,11 @@ namespace ft{
                 return *this;
             }
 
-            reference operator*(){
+            reference operator*() const{
                 return _node->value;
             }
 
-            pointer operator->(){
+            pointer operator->() const{
                 return &_node->value;
             }
 
@@ -445,8 +509,8 @@ namespace ft{
             }
 
             iteratorRBT operator++(int){
-                iteratorRBT temp = *this;
-                _node = RedBlackTree<T>::successor(_node);
+                iteratorRBT temp(*this);
+                ++*this;
                 return temp;
             }
 
@@ -456,20 +520,24 @@ namespace ft{
             }
 
             iteratorRBT operator--(int){
-                iteratorRBT temp = *this;
-                _node = RedBlackTree<T>::predecessor(_node);
+                iteratorRBT temp(*this);
+                --*this;
                 return temp;
             }
 
-            bool operator==(const iteratorRBT &rhs){
+            bool operator==(const iteratorRBT &rhs)const{
                 return _node == rhs._node;
             }
 
-            bool operator!=(const iteratorRBT &rhs){
+            bool operator!=(const iteratorRBT &rhs)const{
                 return _node != rhs._node;
             }
 
             nodePtr getNode(){
+                return _node;
+            }
+
+            nodePtr base(){
                 return _node;
             }
 
@@ -488,10 +556,15 @@ namespace ft{
             typedef typename iterator_traits<Iterator>::pointer pointer;
             typedef typename iterator_traits<Iterator>::reference reference;
         
-        iteratorRBTreverse(): _base(iterator_type()){}
+        iteratorRBTreverse(){}
+        
+        ~iteratorRBTreverse(){}
         
         iteratorRBTreverse(Iterator it): _base(it){
         }
+
+        template <class Iter>
+        iteratorRBTreverse(const iteratorRBTreverse<Iter> &rev_it) : _base(rev_it._base) {}
 
         iteratorRBTreverse(const iteratorRBTreverse &copy): _base(copy._base){}
 
@@ -502,7 +575,7 @@ namespace ft{
             return *this;
         }
         
-        iterator_type base(){
+        iterator_type base() const{
             return _base;
         }
         
@@ -541,7 +614,7 @@ namespace ft{
         }
 
         pointer operator->() const{
-            return _base;
+            return &*_base;
         }
         
         private:

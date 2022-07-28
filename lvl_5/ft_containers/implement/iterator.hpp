@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 12:05:23 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/25 14:18:19 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/07/26 18:52:56 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,18 @@ public:
 		    _ptr = assign._ptr;
 	    return *this;
 	}
-    void operator++() {
+    iterators & operator++() {
         this->_ptr++;
+		return *this;
     }
     iterators operator++(int){
 		iterators tmp = *this;
 		this->_ptr++;
 		return tmp;
 	}
-    void operator--() {
+    iterators & operator--() {
         this->_ptr--;
+		return *this;
     }
     iterators operator--(int){
 		iterators tmp = *this;

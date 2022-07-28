@@ -21,14 +21,15 @@ int main(){
         RBT.insert(1);
         RBT.insert(70);
 
-        RBT.deleteNode(18);
-        RBT.deleteNode(0);
-        // ft::RedBlackTree<int>::iterator it;
-        // it = RBT.begin();
-        // std::cout << *it << std::endl;
-        // RBT.erase(1);
-        // it = RBT.begin();
-        // std::cout << *it << std::endl;
+        // RBT.deleteNode(18);
+        // RBT.deleteNode(0);
+        // RBT.find(1);
+        ft::RedBlackTree<int>::iterator it;
+        it = RBT.begin();
+        std::cout << *it << std::endl;
+        RBT.deleteNode(1);
+        it = RBT.begin();
+        std::cout << *it << std::endl;
         RBT.printTree(3);
 
 

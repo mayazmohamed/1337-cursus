@@ -14,9 +14,7 @@ namespace ft{
             }
             pair(const T1 &a, const T2 &b) : first(a) , second(b) {
             }
-            pair(const pair &copy){
-                *this = copy;
-            }
+            pair(const pair &copy): first(copy.first), second(copy.second) {}
 
             template <class U, class V>
             pair(const pair< U , V > &copy): first(copy.first), second(copy.second){
@@ -25,8 +23,8 @@ namespace ft{
             }
             pair & operator=(const pair &assign){
                 if (this !=  &assign){
-                    first = assign.first;
-                    second = assign.second;
+                    this->first = assign.first;
+                    this->second = assign.second;
                 }
                 return *this;
             }
