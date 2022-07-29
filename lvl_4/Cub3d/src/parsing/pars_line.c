@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:49:04 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/26 15:48:41 by izouf            ###   ########.fr       */
+/*   Updated: 2022/07/29 18:15:59 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_parsing_line(t_cub *all, char *line, int i)
 		all->info.fc = get_rgb(line);
 	else if (line[i] == 'C' && line[i + 1] == ' ')
 		all->info.cc = get_rgb(line);
-	else if (line[i] && line != '\0' && line[i] != '1')
+	else if (line[i] && line[i] != '\0' && line[i] != '1')
 	{
 		printf("pars error");
 		exit(1);
