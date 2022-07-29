@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:06:16 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/27 14:16:38 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/07/29 15:24:51 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,9 +192,9 @@ namespace ft{
             }
 
             void erase (iterator first, iterator last){
-                for (; first != last; first++)
+                for (; first != last; )
                 {
-                    _tree.deleteNode(*first);
+                    _tree.deleteNode(*first++);
                 }
             }
 
