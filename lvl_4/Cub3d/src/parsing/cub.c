@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: izouf <izouf@student.42.fr>                +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:57:21 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/26 17:31:08 by izouf            ###   ########.fr       */
+/*   Updated: 2022/07/30 14:50:42 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ int	big_parss(int ac, char *av[], t_cub *all, char c)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (printf("file not found or permission denied "), 0);
+	for (size_t i = 0; i < 256; i++)
+	{
+		all->info.test[i] = 0;
+	}
+	
 	line = cont_line(av[1]);
 	all->map = fil_tab(line, fd, all);
 	line = 0;
