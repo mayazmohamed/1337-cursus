@@ -6,21 +6,20 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:56:30 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/29 17:53:00 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/08/04 11:59:17 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <deque>
-#if 1 //CREATE A REAL STL EXAMPLE
+#if 0 //CREATE A REAL STL EXAMPLE
 	#include <map>
 	#include <stack>
 	#include <vector>
 	namespace ft = std;
 #else
 	#include "./vector/vector.hpp"
-	// #include <vector>
     #include "./Stack/stack.hpp"
     #include "./map/map.hpp"
 #endif
@@ -103,6 +102,7 @@ int main(int argc, char** argv) {
 	
 	for (int i = 0; i < COUNT; ++i)
 	{
+		std::cout<< "i :" << i <<std::endl;
 		map_int.insert(ft::make_pair(rand(), rand()));
 	}
 

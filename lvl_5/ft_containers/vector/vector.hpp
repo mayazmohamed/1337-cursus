@@ -75,17 +75,18 @@ public:
 
         vector& operator= (const vector& x){
             if (this != &x){
-                if (_capacity < x._capacity)
+                if (_capacity < x._capacity || _capacity == 0){
 					if (_capacity > 0) 
 				    	alloc.deallocate(arr, _capacity);
 				    this->alloc = x.alloc;
 				    arr = this->alloc.allocate(x._size);
                     _capacity = x._size;
-                }
-               _size = x._size;
-				for (size_type i = 0; i <_size;  i++)
-					arr[i] = x.arr[i];
-				return *this;
+				}
+            }
+            _size = x._size;
+			for (size_type i = 0; i <_size;  i++)
+				arr[i] = x.arr[i];
+			return *this;
         }
 
         //Iterators:
@@ -192,26 +193,26 @@ public:
         }
 
         reference front(){
-            if (_size == 0)
-                throw std::out_of_range("Vector");
+            // if (_size == 0)
+            //     throw std::out_of_range("Vector");
             return arr[0];
         }
 
         const_reference front() const{
-            if (this->size == 0)
-                throw std::out_of_range("Vector");
+            // if (this->size == 0)
+            //     throw std::out_of_range("Vector");
             return arr[0];
         }
 
         reference back(){
-            if (_size == 0)
-                throw std::out_of_range("Vector");
+            // if (_size == 0)
+            //     throw std::out_of_range("Vector");
             return arr[_size - 1];
         }
 
         const_reference back() const{
-            if (this->size == 0)
-                throw std::out_of_range("Vector");
+            // if (this->size == 0)
+            //     throw std::out_of_range("Vector");
             return arr[_size - 1];
         }
     
