@@ -1,9 +1,18 @@
-#include "test.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/20 10:35:31 by momayaz           #+#    #+#             */
+/*   Updated: 2022/09/20 10:37:48 by momayaz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "parsConfig.hpp"
+
 
 int main(){
-    configFile v;
-
-    std::string t = "h e l lo\t\n";
-    int i = t.find_first_of("\n", 2);
-    std::cout << i;
+    parsConfig v;
 }
