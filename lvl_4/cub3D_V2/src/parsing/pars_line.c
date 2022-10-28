@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:49:04 by momayaz           #+#    #+#             */
-/*   Updated: 2022/10/18 12:38:22 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/10/28 01:19:33 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned int	get_rgb(char *line)
 	while (s[1][i] && s[1][i] != ',')
 		i++;
 	i++;
-	if (!s[1][i] || s[1][i] == ',' || s[1][i] == '\n')
+	if (!s[1][i] || s[1][i] == ',' || s[1][i] == '\n' || s[2])
 		exit(printf("rgb error"));
 	j = i + 1;
 	while (s[1][j] && s[1][j] != ',')
@@ -46,17 +46,17 @@ void	ft_parsing_line(t_cub *all, char *line, int i)
 	ft_ifspace(line, &i);
 	ft_firstcheck(all, line[i]);
 	if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
-		all->info.n = check_texr(line, "NO");
+		all->info.n = check_texr(line + i, "NO");
 	else if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
-		all->info.s = check_texr(line, "SO");
+		all->info.s = check_texr(line + i, "SO");
 	else if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
-		all->info.w = check_texr(line, "WE");
+		all->info.w = check_texr(line + i, "WE");
 	else if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
-		all->info.e = check_texr(line, "EA");
+		all->info.e = check_texr(line + i, "EA");
 	else if (line[i] == 'F' && line[i + 1] == ' ')
-		all->info.fc = get_rgb(line);
+		all->info.fc = get_rgb(line + i);
 	else if (line[i] == 'C' && line[i + 1] == ' ')
-		all->info.cc = get_rgb(line);
+		all->info.cc = get_rgb(line + i);
 	else if (line[i] && line[i] != '\0' && line[i] != '1')
 	{
 		printf("pars error");
