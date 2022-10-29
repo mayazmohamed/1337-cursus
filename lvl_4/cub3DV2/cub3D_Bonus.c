@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_Bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygbouri <ygbouri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:49:59 by momayaz           #+#    #+#             */
-/*   Updated: 2022/10/20 18:31:06 by ygbouri          ###   ########.fr       */
+/*   Updated: 2022/10/29 02:17:23 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int ac, char **av)
 	i = 0;
 	while (i < 256)
 		all.info.test[i++] = 0;
+	if (ac != 2)
+		return (ft_error("Error\nInvalid number of arguments"));
 	all.checker = 0;
 	all.game_mode = 'b';
 	all.ray = (t_rays *)malloc(sizeof(t_rays));

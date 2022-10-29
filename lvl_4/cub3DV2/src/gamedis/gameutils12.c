@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:36:25 by momayaz           #+#    #+#             */
-/*   Updated: 2022/10/20 13:57:31 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/10/28 09:30:07 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	ft_error(char *str)
 void	getwaltex(t_cub *all)
 {
 	if (all->ray->updirect && all->pos->hori_f)
-		all->l7aj = 0;
-	else if (all->ray->downdirect && all->pos->hori_f)
-		all->l7aj = 3;
-	else if (all->ray->leftdirect && all->pos->verti_f)
-		all->l7aj = 2;
-	else if (all->ray->rightdirect && all->pos->verti_f)
 		all->l7aj = 1;
+	else if (all->ray->downdirect && all->pos->hori_f)
+		all->l7aj = 0;
+	else if (all->ray->leftdirect && all->pos->verti_f)
+		all->l7aj = 3;
+	else if (all->ray->rightdirect && all->pos->verti_f)
+		all->l7aj = 2;
 	if (all->map[(int)(all->pos->po.y / 16)][(int)(all->pos->po.x / 16)] == 'D')
 		all->l7aj = 4;
 	if ((all->ray->updirect && all->pos->hori_f)

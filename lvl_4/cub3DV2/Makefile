@@ -6,7 +6,7 @@
 #    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 14:45:57 by ygbouri           #+#    #+#              #
-#    Updated: 2022/10/20 14:55:54 by momayaz          ###   ########.fr        #
+#    Updated: 2022/10/28 11:46:05 by momayaz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,11 @@ $(NAME) : $(OBJ) $(HEADER)
 	@$(CC) $(CFLAGS) $(SRC) -lmlx $(MLX) -o $(NAME) -g
 	@echo "mandatory is done"
 
-bonus : $(OBJB) $(HEADER)
+$(NAMEB) : $(OBJB) $(HEADER)
 	@$(CC)  $(SRCB) -lmlx $(MLX) -o $(NAMEB) -g
 	@echo "bonus is done"
+
+bonus : $(NAMEB)
 
 clean :
 	@rm -rf $(OBJ) $(OBJB)

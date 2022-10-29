@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygbouri <ygbouri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:49:50 by momayaz           #+#    #+#             */
-/*   Updated: 2022/10/20 18:30:58 by ygbouri          ###   ########.fr       */
+/*   Updated: 2022/10/29 02:16:43 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av)
 	int		i;
 
 	i = 0;
+	if (ac != 2)
+		return (ft_error("Error\nInvalid number of arguments"));
 	while (i < 256)
 		all.info.test[i++] = 0;
 	all.checker = 0;
