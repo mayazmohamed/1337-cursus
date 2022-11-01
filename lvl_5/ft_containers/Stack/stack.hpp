@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 15:57:46 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/29 17:27:08 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/10/31 21:52:56 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,7 @@ namespace ft{
 	template <class T, class Container>
   	bool operator> (const stack<T,Container>& lhs, const stack<T,Container>& rhs) {
 		  return lhs.c > rhs.c;
-	}
-
-
-    
+	}    
 }
-
-
-
-
-
-
-
 
 #endif

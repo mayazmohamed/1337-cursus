@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:06:16 by momayaz           #+#    #+#             */
-/*   Updated: 2022/07/29 15:24:51 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/11/01 12:38:54 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ namespace ft{
             
             template <class InputIterator>
             void insert (InputIterator first, InputIterator last){
-                typename RBT::nodePtr node;
+                typename RBT::nodePtr node = NULL;
                 for (; first != last; first++)
                 {
                     _tree.insert(*first);

@@ -6,14 +6,14 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:56:30 by momayaz           #+#    #+#             */
-/*   Updated: 2022/08/04 11:59:17 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/11/01 12:41:21 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <deque>
-#if 0 //CREATE A REAL STL EXAMPLE
+#if 1 //CREATE A REAL STL EXAMPLE
 	#include <map>
 	#include <stack>
 	#include <vector>
