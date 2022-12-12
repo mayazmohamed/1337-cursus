@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./requirements/nginx
+    image: nginx
+    volumes:
+      - wp-data:/var/www/
+      - ./requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./requirements/tools/:/etc/ssl/private/
+    restart: always
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+  mariadb:
+    build: ./requirements/mariadb
+    image: mariadb
+    env_file: 
+      - .env
+    restart: always
+  wordpress:
+    build: ./requirements/wordpress
+    image: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wp-data:/var/www/
+
+volumes:
+  wp-data:
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/momayaz/Desktop/inception/data
