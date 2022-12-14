@@ -4,6 +4,7 @@ services:
   nginx:
     build: ./requirements/nginx
     image: nginx
+    container_name: nginx
     volumes:
       - wp-data:/var/www/
       - ./requirements/nginx/conf/:/etc/nginx/http.d
@@ -19,6 +20,7 @@ services:
   mariadb:
     build: ./requirements/mariadb
     image: mariadb
+    container_name: mariadb
     env_file:
       - .env
     volumes:
@@ -37,6 +39,7 @@ services:
         MYSQL_USER: ${MYSQL_USER}
         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     image: wordpress
+    container_name: wordpress
     depends_on:
       - mariadb
     volumes:
@@ -98,6 +101,21 @@ services:
     networks:
       - inception
     restart: always
+  
+  cadvisor:
+    build: ./requirements/bonus/cadvisor/
+    image: cadvisor
+    container_name: cadvisor
+    restart: always
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 2000:2000
+    networks:
+      - inception
 
 volumes:
   wp-data:
