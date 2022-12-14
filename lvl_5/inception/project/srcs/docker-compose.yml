@@ -6,30 +6,112 @@ services:
     image: nginx
     volumes:
       - wp-data:/var/www/
-      - ./requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./requirements/nginx/conf/:/etc/nginx/http.d
       - ./requirements/tools/:/etc/ssl/private/
-    restart: always
     depends_on:
       - wordpress
     ports:
       - "443:443"
+    networks:
+      - inception
+    restart: always
+
   mariadb:
     build: ./requirements/mariadb
     image: mariadb
-    env_file: 
+    env_file:
       - .env
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - inception
     restart: always
+
   wordpress:
-    build: ./requirements/wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+      args:
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     image: wordpress
     depends_on:
       - mariadb
     volumes:
       - wp-data:/var/www/
+    networks:
+      - inception
+    restart: always
+
+  redis:
+    build:
+      context: .
+      dockerfile: requirements/bonus/redis/Dockerfile
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - inception
+    restart: always
+
+  vsftpd:
+    build:
+      context: ./requirements/bonus/vsftpd
+      dockerfile: Dockerfile
+    image: ftp
+    container_name: ftp
+    environment:
+      FTP_USER: ${FTP_USER}
+      FTP_PASSWORD: ${FTP_PASSWORD}
+    ports:
+      - "21:21"
+    volumes:
+      - wp-data:/var/www/
+    networks:
+      - inception
+    restart: always
+
+  adminer:
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+    image: adminer
+    container_name: adminer
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+    restart: always
+
+  website:
+    build:
+      context: ./requirements/bonus/website
+      dockerfile: Dockerfile
+    image: website
+    container_name: website
+    ports:
+      - "3000:3000"
+    networks:
+      - inception
+    restart: always
 
 volumes:
   wp-data:
     driver_opts:
       o: bind
       type: none
-      device: /Users/momayaz/Desktop/inception/data
+      device: /home/momayaz/home/data/wordpress
+
+  db-data:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/momayaz/home/data/mariadb
+
+networks:
+  inception:
+    driver: bridge
