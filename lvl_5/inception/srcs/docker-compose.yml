@@ -1,0 +1,135 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./requirements/nginx
+    image: nginx
+    container_name: nginx
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - wp-data:/var/www/
+      - ./requirements/nginx/conf:/etc/nginx/http.d
+      - ./requirements/tools:/etc/ssl/private/
+    networks:
+      - inception
+    restart: always
+
+  mariadb:
+    build: ./requirements/mariadb
+    image: maridb
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - inception
+    restart: always
+
+  wordpress:
+    build: 
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+      args:
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    image: wordpress
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wp-data:/var/www/
+    networks:
+      - inception
+    restart: always
+
+  redis:
+    build: ./requirements/bonus/redis
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - inception
+    volumes:
+      - wp-data:/var/www/
+    restart: always
+
+  ftp:
+    build: ./requirements/bonus/ftp
+    image: ftp
+    container_name: ftp
+    volumes:
+      - wp-data:/var/www/
+    ports:
+      - "21:21"
+    env_file:
+      - .env
+    networks:
+      - inception
+    restart: always
+
+  website:
+    build:
+      context: ./requirements/bonus/website
+      dockerfile: Dockerfile
+    image: website
+    container_name: website
+    ports:
+      - "3000:3000"
+    networks:
+      - inception
+    restart: always
+
+  adminer:
+    build: ./requirements/bonus/adminer
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    restart: always
+
+  cadviser:
+    build: ./requirements/bonus/cadviser
+    image: cadviser
+    container_name: cadviser
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "2000:2000"
+    networks:
+      - inception
+    restart: always
+
+
+
+volumes:
+  wp-data:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/momayaz/data/wordpress
+
+  db-data:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/momayaz/data/mariadb
+
+networks:
+  inception:
+    driver: bridge
