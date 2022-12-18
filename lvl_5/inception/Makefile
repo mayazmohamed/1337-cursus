@@ -6,7 +6,6 @@ all:
 
 build:
 	@printf "Building ${NAME} ...\n"
-	@sh ./srcs/requirements/tools/script.sh
 	@docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 start:
