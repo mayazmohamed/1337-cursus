@@ -2,27 +2,29 @@ NAME = inception
 
 all:
 	@printf "Starting ${NAME} ...\n"
-	@docker-compose -f ./srcs/docker-compose.yml up -d
+	@sh ./srcs/requirements/tools/script.sh
+	@docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d
 
 build:
 	@printf "Building ${NAME} ...\n"
-	@docker-compose -f ./srcs/docker-compose.yml up -d --build
+	@sh ./srcs/requirements/tools/script.sh
+	@docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d --build
 
 start:
 	@printf "Starting ${NAME} ...\n"
-	@docker-compose -f ./srcs/docker-compose.yml start
+	@docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env start
 
 stop:
 	@printf "Stopping ${NAME} ...\n"
-	@docker-compose -f ./srcs/docker-compose.yml stop
+	@docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env stop
 
 down:
 	@printf "Shuting Down ${NAME} ...\n"
-	@docker-compose -f ./srcs/docker-compose.yml down
+	@docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down
 
 re: down
 	printf "ReBuilding ${NAME} ...\n"
-	@docker-compose -f ./srcs/docker-compose.yml up -d --build
+	@docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d --build
 
 clean: down
 	@printf "Cleaning ${name} ...\n"
