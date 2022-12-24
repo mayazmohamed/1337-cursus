@@ -13,7 +13,7 @@
 
 (***! some projects can't be uploaded due to there nature [virtual machine - networking - ... ]***)
 
-(***! some projects only has 100 as max score --> NetPractice, CPP Module 08***)
+(***! some projects only has 100 as max score: --> NetPractice, CPP Module 08***)
 
 | CIRCLE  | NAME | FIELD | EXPECTED DURATION | EXP | STATUS | LVL |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
