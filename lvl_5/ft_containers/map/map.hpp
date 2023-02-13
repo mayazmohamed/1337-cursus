@@ -326,6 +326,7 @@ namespace ft{
             allocator_type get_allocator() const{
                 return allocator_type();
             }
+
         
         private:
             typedef RedBlackTree<value_type, value_compare, allocator_type> RBT;
@@ -334,8 +335,31 @@ namespace ft{
             key_compare _comp;
     };
 
+
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator== (const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs){
+        if (lhs.size() != rhs.size())
+            return false;
+        typename map<Key,T,Compare,Alloc>::const_iterator it = lhs.begin();
+        typename map<Key,T,Compare,Alloc>::const_iterator ite = lhs.end();
+        typename map<Key,T,Compare,Alloc>::const_iterator it2 = rhs.begin();
+        for (; it != ite; it++, it2++)
+        {
+            if (*it != *it2)
+                return false;
+        }
+        return true;
+    }
+
+    template <class Key, class T, class Compare, class Alloc>
+    bool operator!= (const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs){
+        return !(lhs == rhs);
+    }
     
 };
+
+
+
 
 
 #endif 

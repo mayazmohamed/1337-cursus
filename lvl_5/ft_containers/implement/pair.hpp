@@ -41,6 +41,7 @@ namespace ft{
 
     template <class T1, class T2>
     bool operator!=(const pair<T1, T2> &p1, const pair<T1, T2> &p2){
+        std::cout << "operator!= called" << std::endl;
         return !(p1 == p2);
     }
 
